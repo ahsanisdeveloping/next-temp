@@ -30,14 +30,16 @@ export default function AnimatedGradientText() {
       <motion.div
         animate={{ opacity: [0.8, 1, 0.8] }}
         transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+        style={{display:"inline"}}
       >
         <Text
-          fontSize="88px"
-          fontWeight="bold"
+          fontSize="60px"
+          fontWeight={400}
           bgGradient={gradient}
           bgClip="text"
+          style={{display:"inline"}}
         >
-          Popin
+          {" "}pop-ups!
         </Text>
       </motion.div>
     

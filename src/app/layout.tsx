@@ -3,6 +3,7 @@
 import { ChakraProvider, extendTheme, ColorModeScript } from "@chakra-ui/react";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Preloader from "../app/components/Preloader"; // Import Preloader Component
 
 const theme = extendTheme({
@@ -38,7 +39,13 @@ export default function RootLayout({ children }: LayoutProps) {
           {!showContent ? (
             <Preloader onComplete={() => setShowContent(true)} />
           ) : (
-            children
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1 }} // Smooth fade-in transition
+            >
+              {children}
+            </motion.div>
           )}
         </ChakraProvider>
       </body>

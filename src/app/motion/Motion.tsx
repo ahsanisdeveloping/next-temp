@@ -29,28 +29,28 @@ const theme = extendTheme({
 const MotionBox = motion(Box);
 
 export default function LandingComponent() {
-  const [gradientAngle, setGradientAngle] = useState(360);
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollY = window.scrollY;
-      setGradientAngle(scrollY % 360); // Change angle dynamically
-    };
+ 
+  let ownerText = "Be found by customers seeking experiences and local"
+  let customerText = "Discover unique experiences and uncover amazing"
+  const [introText,setIntroText] = useState("Introducing")
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
+  const handleCustomerClick = () => {
+    setIntroText(customerText)
+  }
+  const handleOwnerClick = () => {
+    setIntroText(ownerText)
+  }
   return (
     <ChakraProvider theme={theme}>
       <Box
         transition="background 10s ease"
-        bgGradient={`linear(${gradientAngle}deg, #fff,rgba(231, 119, 71, 0.25))`}
+        background="white"
       >
         {/* Animated Section 1 */}
         <MotionBox
           p={40}
           textAlign="center"
-          fontSize="88px"
+          fontSize="60px"
           initial={{ opacity: 0, scale: 0 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           after={{ opacity: 0, x: 50, scale: 0 }}
@@ -58,30 +58,47 @@ export default function LandingComponent() {
         >
           <Heading
             as="h6"
-            fontWeight={500}
+            fontWeight={400}
             lineHeight={1}
-            size="88px"
+            size="60px"
             color="black"
             textAlign="center"
-            width={["100%", "50%"]}
+            width={["100%", "100%"]}
             mx="auto"
+            style={{display:"inline"}}
           >
-            Welcome to{" "}
+           {introText}
+           <AnimatedGradientText />
+
             <Text
               fontWeight={450}
               fontWeight="bold"
               bgGradient="linear(to-r, orange.400, orange.500, orange.600, orange.700)"
               bgClip="text"
             >
-              <AnimatedGradientText />
             </Text>
           </Heading>
 
+          
+          <Box style={{display:"flex",
+            gap:"20px",
+            justifyContent:"center",
+            width:"30%",
+            margin:"0px auto"
+          }}>
+          <Button backgroundColor="#ff7e47" marginTop={8} textColor="white" mx="auto" onClick={handleCustomerClick}>
+            Potential Customer
+          </Button>
+          <Button backgroundColor="#ff7e47" marginTop={8} textColor="white" mx="auto" onClick={handleOwnerClick}>
+            Pop-up owner
+          </Button>
+          </Box>
           <Text
             fontSize="lg"
             paddingTop={4}
             color="black"
             mt={2}
+            textAlign="center"
             width={["100%", "50%"]}
             mx="auto"
           >
@@ -89,6 +106,7 @@ export default function LandingComponent() {
             unique, local pop-ups and experiences in real time.
           </Text>
         </MotionBox>
+        
         <MotionBox
           p={10}
           textAlign="center"

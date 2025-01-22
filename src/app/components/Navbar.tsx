@@ -41,7 +41,7 @@ export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box bg={useColorModeValue("gray.100", "gray.900")} px={4}>
+    <Box background="white">
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         {/* Logo or Brand Name */}
         <Box fontWeight={"bold"}><Image src="/popinlogoorange.png" alt="Popin Logo" width={120} height={40} /></Box>
