@@ -30,16 +30,23 @@ const MotionBox = motion(Box);
 
 export default function LandingComponent() {
  
-  let ownerText = "Be found by customers seeking experiences and local"
-  let customerText = "Discover unique experiences and uncover amazing"
-  const [introText,setIntroText] = useState("Introducing")
+  const ownerText = "Be found by customers seeking experiences and local";
+  const customerText = "Discover unique experiences and uncover amazing";
 
-  const handleCustomerClick = () => {
-    setIntroText(customerText)
-  }
-  const handleOwnerClick = () => {
-    setIntroText(ownerText)
-  }
+  const [introText, setIntroText] = useState("Discover unique experiences and uncover amazing");
+
+  useEffect(() => {
+    const texts = [ownerText, customerText];
+    let index = 0;
+
+    const interval = setInterval(() => {
+      index = (index + 1) % texts.length; // Toggle between 0 and 1
+      setIntroText(texts[index]);
+    }, 3000); // Switch every 3 seconds
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, []);
+
   return (
     <ChakraProvider theme={theme}>
       <Box
@@ -48,7 +55,7 @@ export default function LandingComponent() {
       >
         {/* Animated Section 1 */}
         <MotionBox
-          p={40}
+          p="80px 200px"
           textAlign="center"
           fontSize="60px"
           initial={{ opacity: 0, scale: 0 }}
@@ -58,8 +65,8 @@ export default function LandingComponent() {
         >
           <Heading
             as="h6"
-            fontWeight={400}
-            lineHeight={1}
+            fontWeight={500}
+            lineHeight={0.5}
             size="60px"
             color="black"
             textAlign="center"
@@ -68,7 +75,14 @@ export default function LandingComponent() {
             style={{display:"inline"}}
           >
            {introText}
-           <AnimatedGradientText />
+           <Text
+          fontSize="60px"
+          fontWeight={500}
+          bgGradient="linear(to-r, #ff7e47, #fb6d6f)" bgClip="text"
+          style={{display:"inline"}}
+        >
+          {" "}pop-ups!
+        </Text>
 
             <Text
               fontWeight={450}
@@ -79,23 +93,49 @@ export default function LandingComponent() {
             </Text>
           </Heading>
 
-          
+          <Text
+            fontSize="23px"
+            paddingTop={4}
+            color="#726F6F"
+            mt={2}
+            textAlign="center"
+            width={["100%", "80%"]}
+            mx="auto"
+          >
+            The ultimate platform for pop-ups and local experiences, Popin connects consumers through real-time, location-based advertising
+          </Text>
           <Box style={{display:"flex",
             gap:"20px",
             justifyContent:"center",
             width:"30%",
             margin:"0px auto"
           }}>
-          <Button backgroundColor="#ff7e47" marginTop={8} textColor="white" mx="auto" onClick={handleCustomerClick}>
-            Potential Customer
-          </Button>
-          <Button backgroundColor="#ff7e47" marginTop={8} textColor="white" mx="auto" onClick={handleOwnerClick}>
-            Pop-up owner
-          </Button>
+         <Button
+      bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
+      marginTop={8}
+      textColor="white"
+      mx="auto"
+      px={6}
+      py={3}
+      fontSize="lg"
+      fontWeight="bold"
+      borderRadius="md"
+      transition="all 0.3s ease-in-out"
+      _hover={{
+        bgGradient: "linear(to-r, #fb6d6f, #ff7e47)", // Reverse gradient on hover
+        transform: "scale(1.05)", // Slightly enlarge the button
+        boxShadow: "0px 4px 15px rgba(255, 126, 71, 0.4)", // Glowing effect
+      }}
+      _active={{
+        transform: "scale(0.98)", // Slight press-down effect when clicked
+      }}
+    >
+      Access Popin
+    </Button>
           </Box>
           <Text
             fontSize="lg"
-            paddingTop={4}
+            paddingTop={20}
             color="black"
             mt={2}
             textAlign="center"

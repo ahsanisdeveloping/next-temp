@@ -44,13 +44,46 @@ export default function Navbar() {
     <Box background="white">
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         {/* Logo or Brand Name */}
-        <Box fontWeight={"bold"}><Image src="/popinlogoorange.png" alt="Popin Logo" width={120} height={40} /></Box>
+        <Box width="150px" height="auto"> {/* Adjust width here */}
+      <Image
+        src="/popinlogoorange.png"
+        alt="Popin Logo"
+        layout="intrinsic" // Maintains aspect ratio automatically
+        width={300} // Original image width
+        height={100} // Original image height
+      />
+    </Box>
 
         {/* Desktop Navigation */}
         <HStack as={"nav"} spacing={4} display={{ base: "none", md: "flex" }}>
-          {Links.map((link) => (
-            <NavLink key={link}>{link}</NavLink>
-          ))}
+        {Links.map((link) => (
+        <Link
+          key={link}
+          position="relative"
+          fontSize="lg"
+          fontWeight={400}
+          color="gray.700"
+          // _hover={{ textDecoration: "none" }}
+          _after={{
+            content: '""',
+            position: "absolute",
+            left: 0,
+            bottom: "-3px",
+            width: "100%",
+            height: "2px",
+            bgGradient: "linear(to-r, #ff7e47, #fb6d6f)", // Apply gradient
+            transform: "scaleX(0)",
+            transition: "transform 0.3s ease-in-out",
+          }}
+          _hover={{
+            _after: {
+              transform: "scaleX(1)", // Expand gradient border on hover
+            },
+          }}
+        >
+          {link}
+        </Link>
+      ))}
           {/* Theme Toggle Button */}
           <Button onClick={toggleColorMode} variant="ghost">
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
