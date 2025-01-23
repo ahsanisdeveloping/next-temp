@@ -19,7 +19,7 @@ import {
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 
-const Links = ["Home", "About", "Services", "Contact"];
+const Links = ["Home", "Pricing", "Blogs", "Contact"];
 
 const NavLink = ({ children }: { children: string }) => (
   <Link
@@ -41,10 +41,10 @@ export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Box background="white">
+    <Box background="white " style={{padding:"10px 25px"}}>
       <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
         {/* Logo or Brand Name */}
-        <Box width="150px" height="auto"> {/* Adjust width here */}
+        <Box width="100px" height="auto"> {/* Adjust width here */}
       <Image
         src="/popinlogoorange.png"
         alt="Popin Logo"
