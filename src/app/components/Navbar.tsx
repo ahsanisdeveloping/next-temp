@@ -18,7 +18,6 @@ import {
   Image
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
-
 const Links = ["Home", "Pricing", "Blogs", "Contact"];
 
 const NavLink = ({ children }: { children: string }) => (
@@ -30,7 +29,7 @@ const NavLink = ({ children }: { children: string }) => (
       textDecoration: "none",
       bg: useColorModeValue("gray.200", "gray.700"),
     }}
-    href={`#${children.toLowerCase()}`}
+    href={`${children.toLowerCase()}`}
   >
     {children}
   </Link>

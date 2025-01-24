@@ -2,14 +2,27 @@ import { Box, SimpleGrid, Image, useBreakpointValue } from '@chakra-ui/react';
 import React, { useEffect, useRef } from 'react';
 
 const images = [
-    '/grid1.webp',
-    '/grid2.webp',
-    '/grid3.webp',
-    '/grid4.webp',
-    '/grid5.webp',
-    '/grid6.webp',
-    '/grid7.webp',
-    '/grid8.webp',
+    '/landingpage/grid7.png',
+    '/landingpage/grid9.png',
+    '/landingpage/grid10.png',
+    '/landingpage/grid1.png',
+    '/landingpage/grid2.png',
+    '/landingpage/grid3.png',
+    '/landingpage/grid4.png',
+    '/landingpage/grid1.png',
+    '/landingpage/grid2.png',
+    '/landingpage/grid8.png',
+    '/landingpage/grid6.png',
+    '/landingpage/grid7.png',
+    '/landingpage/grid9.png',
+    '/landingpage/grid10.png',
+    '/landingpage/grid1.png',
+    '/landingpage/grid2.png',
+    '/landingpage/grid11.png',
+    '/landingpage/grid12.png',
+    '/landingpage/grid4.png',
+    '/landingpage/grid5.png',
+    '/landingpage/grid6.png',
   ];
 
 const Gallery = () => {
@@ -18,7 +31,7 @@ const Gallery = () => {
   const gridColumns = useBreakpointValue({
     base: 1,
     md: 3,
-    lg: 4,
+    lg: 7,
   });
 
   useEffect(() => {
@@ -44,7 +57,7 @@ const Gallery = () => {
         }
       }>
         {images.map((image, index) => (
-          <Box key={index} >
+          <Box key={index} height={200} width={200}>
             <Image src={image} alt={`Image ${index + 1}`} borderRadius="md" />
           </Box>
         ))}

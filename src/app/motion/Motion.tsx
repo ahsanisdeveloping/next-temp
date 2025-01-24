@@ -16,6 +16,7 @@ import AnimatedGradientText from "../components/AnimatedText";
 import Gallery from "../components/Gallery";
 import Pillars from "../components/Pillars";
 import PricingTable from "../components/Pricing";
+import FAQSection from "../components/Faqs";
 
 // Custom theme for smooth animations
 const theme = extendTheme({
@@ -231,37 +232,37 @@ export default function LandingComponent() {
             position="absolute"
             zIndex={10}
             left="100px"
-            top={20}
+            top={10}
             // backgroundColor="white"
             // bgGradient="linear(to-r,rgba(255, 126, 71, 0.33),rgba(251, 109, 111, 0.3))"
             width={400}
           >
            <Text
-              fontSize="30px"
-              fontWeight={600}
+              fontSize="20px"
+              fontWeight={500}
               // bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
               // bgClip="text"
               color="#ff7e47"
               display="inline"
             >
-              Design in minutes, publish sites in seconds.
+              Popin is the real-time advertising platform for pop-up businesses. It empowers owners to create a flexible business profile, share their location effortlessly, and connect with customers instantly.
             </Text>
             <br />
             <Text
               fontSize="20px"
-              fontWeight={400}
+              fontWeight={500}
               // bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
               // bgClip="text"
               color="gray"
               display="inline"
             >
-             Unlock Framer’s full potential with plugins and templates. Discover powerful tools, seamless app integrations, and responsive designs to create stunning websites effortlessly.
+             For consumers, it’s the easiest way to discover what’s happening right now—unique experiences, nearby and in the moment.
              
             </Text>
             <br />
             <Button
               bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
-              marginTop={3}
+              marginTop={7}
               textColor="white"
               mx="auto"
               px={6}
@@ -284,7 +285,9 @@ export default function LandingComponent() {
           </Box>
           
         </Box>
+
         <PricingTable/>
+        <FAQSection/>
         {/* <Pillars/> */}
         <MotionBox
           p={10}

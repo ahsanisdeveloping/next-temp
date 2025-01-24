@@ -64,8 +64,8 @@ export default function PricingTable() {
   return (
     <Box maxW="1000px" mx="auto" py={10} textAlign="center">
       {/* Title */}
-      <Text fontSize="3xl" fontWeight="bold">
-        Plans and Pricing
+      <Text fontSize="3xl" fontWeight="bold" color="#ff7e47">
+        Plans & Pricing
       </Text>
 
       {/* Pricing Cards */}
