@@ -39,7 +39,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
         >
           {/* Replace with your actual logo animation video */}
           <video
-            src="/logoanimatelight.mp4"
+            src="/landingpage/logoanimatelight.mp4"
             autoPlay
             muted
             onEnded={() => setIsVisible(false)}

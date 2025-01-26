@@ -15,6 +15,7 @@ import {
   AccordionIcon,
   Text,
   Divider,
+  useColorModeValue,
 } from "@chakra-ui/react";
 
 const faqData = {
@@ -42,29 +43,48 @@ const faqData = {
 export default function FAQSection() {
   const [selectedTab, setSelectedTab] = useState(0);
 
-  const getFAQs = () => {
-    if (selectedTab === 0) return faqData.consumers;
-    if (selectedTab === 1) return faqData.businesses;
-    return faqData.general;
-  };
+  // 🌙 Dark Mode Colors
+  const bg = useColorModeValue("white", "gray.900"); // Background
+  const textColor = useColorModeValue("black", "whiteAlpha.900"); // Text color
+  const tabBorder = useColorModeValue("#ff7e47", "#fb6d6f"); // Gradient border for tabs
+  const dividerColor = useColorModeValue("#ff7e47", "gray.500"); // Divider color
+  const accordionBg = useColorModeValue("white", "gray.800"); // Accordion background
 
   return (
-    <Box maxW="800px" mx="auto" py={10}>
+    <Box maxW="900px" mx="auto" py={10} px={[4, 6, 8]} bg={bg} borderRadius="lg">
       {/* Title */}
-      <Text fontSize="2xl" fontWeight="bold" mb={4} color="orange.500">
+      <Text fontSize={["2xl", "3xl"]} fontWeight="bold" mb={6} color={tabBorder} textAlign="center">
         Frequently Asked Questions
       </Text>
 
       {/* Tabs */}
       <Tabs index={selectedTab} onChange={setSelectedTab} variant="unstyled">
-        <TabList >
-          <Tab _selected={{ color: "#ff7e47", borderBottom: "2px solid #ff7e47" }} px={4}>
+        <TabList
+          justifyContent="center"
+          borderBottom="1px solid"
+          borderColor={dividerColor}
+          pb={2}
+          flexWrap="wrap"
+        >
+          <Tab
+            _selected={{ color: tabBorder, borderBottom: `2px solid ${tabBorder}` }}
+            px={[2, 4]}
+            fontSize={["sm", "md"]}
+          >
             For Consumers
           </Tab>
-          <Tab _selected={{ color: "#ff7e47", borderBottom: "2px solid #ff7e47" }} px={4}>
+          <Tab
+            _selected={{ color: tabBorder, borderBottom: `2px solid ${tabBorder}` }}
+            px={[2, 4]}
+            fontSize={["sm", "md"]}
+          >
             For Businesses
           </Tab>
-          <Tab _selected={{ color: "#ff7e47", borderBottom: "2px solid #ff7e47" }} px={4}>
+          <Tab
+            _selected={{ color: tabBorder, borderBottom: `2px solid ${tabBorder}` }}
+            px={[2, 4]}
+            fontSize={["sm", "md"]}
+          >
             General FAQs
           </Tab>
         </TabList>
@@ -72,13 +92,13 @@ export default function FAQSection() {
         {/* Tab Panels */}
         <TabPanels>
           <TabPanel>
-            <FAQList faqs={faqData.consumers} />
+            <FAQList faqs={faqData.consumers} accordionBg={accordionBg} dividerColor={dividerColor} />
           </TabPanel>
           <TabPanel>
-            <FAQList faqs={faqData.businesses} />
+            <FAQList faqs={faqData.businesses} accordionBg={accordionBg} dividerColor={dividerColor} />
           </TabPanel>
           <TabPanel>
-            <FAQList faqs={faqData.general} />
+            <FAQList faqs={faqData.general} accordionBg={accordionBg} dividerColor={dividerColor} />
           </TabPanel>
         </TabPanels>
       </Tabs>
@@ -87,21 +107,38 @@ export default function FAQSection() {
 }
 
 // Reusable FAQ List Component
-function FAQList({ faqs }: { faqs: { question: string; answer: string }[] }) {
+function FAQList({
+  faqs,
+  accordionBg,
+  dividerColor,
+}: {
+  faqs: { question: string; answer: string }[];
+  accordionBg: string;
+  dividerColor: string;
+}) {
   return (
     <Accordion allowToggle>
       {faqs.map((faq, index) => (
         <AccordionItem key={index} border="none">
           <h2>
-            <AccordionButton _expanded={{ color: "#ff7e47" }}>
-              <Box flex="1" textAlign="left" fontWeight="bold">
+            <AccordionButton
+              _expanded={{ color: "#ff7e47", fontWeight: "bold" }}
+              bg={accordionBg}
+              py={[2, 3]}
+              px={[2, 4]}
+              borderRadius="md"
+              fontSize={["sm", "md"]}
+            >
+              <Box flex="1" textAlign="left">
                 {faq.question}
               </Box>
               <AccordionIcon />
             </AccordionButton>
           </h2>
-          <AccordionPanel pb={4}>{faq.answer}</AccordionPanel>
-          <Divider borderColor="#ff7e47" />
+          <AccordionPanel pb={4} fontSize={["sm", "md"]}>
+            {faq.answer}
+          </AccordionPanel>
+          <Divider borderColor={dividerColor} />
         </AccordionItem>
       ))}
     </Accordion>

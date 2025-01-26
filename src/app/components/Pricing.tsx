@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import {
   Box,
@@ -9,6 +11,8 @@ import {
   HStack,
   Badge,
   Icon,
+  useColorModeValue,
+  useBreakpointValue,
 } from "@chakra-ui/react";
 import { CheckCircleIcon } from "@chakra-ui/icons";
 
@@ -33,7 +37,7 @@ const pricingPlans = [
     description:
       "Get 10 Pops with up to 240 hours of map visibility, a custom online profile, invites to pop-up meetups, and sourced pitching opportunities—perfect for flexible pop-up schedules.",
     features: [
-      "Upto 240 hrs of Map Visibility",
+      "Up to 240 hrs of Map Visibility",
       "Custom Pop-up page",
       "Pop-up Business meetups",
       "Monthly Pitching Opportunities",
@@ -51,7 +55,7 @@ const pricingPlans = [
       "Custom Pop-up Profile Site",
       "Pop-up Business Meetups",
       "Monthly Pitching Opportunities",
-      "Single or Multi Site Popus",
+      "Single or Multi Site Popups",
     ],
     buttonText: "Select",
     badge: "Great Starting Point",
@@ -59,18 +63,28 @@ const pricingPlans = [
 ];
 
 export default function PricingTable() {
-  const [selectedPlan, setSelectedPlan] = useState("free"); // Default to Enterprise
+  const [selectedPlan, setSelectedPlan] = useState("free");
+
+  // 🌙 Dark Mode Colors
+  const bg = useColorModeValue("white", "gray.900");
+  const textColor = useColorModeValue("black", "whiteAlpha.900");
+  const secondaryText = useColorModeValue("gray.600", "gray.400");
+  const cardBg = useColorModeValue("white", "gray.800");
+  const borderColor = useColorModeValue("gray.200", "gray.600");
+
+  // Responsive column layout
+  const columns = useBreakpointValue({ base: 1, md: 2, lg: 3 });
 
   return (
-    <Box maxW="1000px" mx="auto" py={10} textAlign="center">
+    <Box maxW="1000px" mx="auto" py={10} textAlign="center" bg={bg} px={[4, 6, 8]}>
       {/* Title */}
-      <Text fontSize="3xl" fontWeight="bold" color="#ff7e47">
+      <Text fontSize={["2xl", "3xl"]} fontWeight="bold" color="#ff7e47">
         Plans & Pricing
       </Text>
 
       {/* Pricing Cards */}
       <Grid
-        templateColumns={{ base: "1fr", md: "repeat(3, 1fr)" }}
+        templateColumns={`repeat(${columns}, 1fr)`}
         gap={6}
         mt={8}
         alignItems="center"
@@ -84,23 +98,19 @@ export default function PricingTable() {
               p={6}
               borderRadius="lg"
               boxShadow="lg"
-              height={510} // Fixed height to ensure uniformity
-              backgroundImage={
-                isSelected
-                  ? "linear-gradient(to right, #ff7e47, #fb6d6f)"
-                  : "none"
-              }
-              backgroundColor={!isSelected ? "white" : "transparent"}
-              color={isSelected ? "white" : "black"}
+              height="100%" // Ensures uniform height
+              backgroundImage={isSelected ? "linear-gradient(to right, #ff7e47, #fb6d6f)" : "none"}
+              backgroundColor={!isSelected ? cardBg : "transparent"}
+              color={isSelected ? "white" : textColor}
               border="1px solid"
-              borderColor={isSelected ? "transparent" : "gray.200"}
+              borderColor={isSelected ? "transparent" : borderColor}
               textAlign="center"
               cursor="pointer"
               transition="all 0.3s ease-in-out"
               _hover={{ transform: "scale(1.02)" }}
               onClick={() => setSelectedPlan(plan.id)}
-              display="flex" // Makes the card a flex container
-              flexDirection="column" // Ensures items stack vertically
+              display="flex"
+              flexDirection="column"
             >
               {/* Content Wrapper to push button down */}
               <Box flex="1">
@@ -115,13 +125,10 @@ export default function PricingTable() {
                 )}
 
                 {/* Price */}
-                <Text fontSize="4xl" fontWeight="bold" mt={2}>
+                <Text fontSize={["3xl", "4xl"]} fontWeight="bold" mt={2}>
                   {plan.price}
                 </Text>
-                <Text
-                  fontSize="sm"
-                  color={isSelected ? "whiteAlpha.800" : "gray.500"}
-                >
+                <Text fontSize="sm" color={isSelected ? "whiteAlpha.800" : secondaryText}>
                   {plan.description}
                 </Text>
 
@@ -129,10 +136,7 @@ export default function PricingTable() {
                 <VStack align="start" spacing={2} mt={4}>
                   {plan.features.map((feature, i) => (
                     <HStack key={i}>
-                      <Icon
-                        as={CheckCircleIcon}
-                        color={isSelected ? "white" : "green.400"}
-                      />
+                      <Icon as={CheckCircleIcon} color={isSelected ? "white" : "green.400"} />
                       <Text fontSize="sm">{feature}</Text>
                     </HStack>
                   ))}
@@ -141,17 +145,14 @@ export default function PricingTable() {
 
               {/* Button stays at the bottom */}
               <Button
-                mt="auto" // Pushes it to the bottom
+                mt="auto"
                 color={isSelected ? "black" : "white"}
-                backgroundImage={
-                  isSelected
-                    ? "white"
-                    : "linear-gradient(to right, #ff7e47, #fb6d6f)"
-                }
+                backgroundImage={isSelected ? "white" : "linear-gradient(to right, #ff7e47, #fb6d6f)"}
                 backgroundColor={isSelected ? "white" : "transparent"}
                 _hover={{ opacity: 0.9 }}
                 w="full"
                 variant="outline"
+                fontSize={["md", "lg"]}
               >
                 {plan.buttonText}
               </Button>
