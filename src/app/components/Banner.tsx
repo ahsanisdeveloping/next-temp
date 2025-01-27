@@ -23,11 +23,11 @@ const Banner = () => {
   }, []);
 
   // 🌙 Dark Mode Support
-  const bg = useColorModeValue("white", "gray.900"); // Light / Dark Background
-  const textColor = useColorModeValue("black", "whiteAlpha.900"); // Text Color
+  const bg = useColorModeValue("white", "gray.900"); 
+  const textColor = useColorModeValue("black", "whiteAlpha.900"); 
   const gradientText = useColorModeValue(
-    "linear(to-r, #ff7e47, #fb6d6f)", // Light mode gradient
-    "linear(to-r, #ff9e7a, #fc8c8e)" // Dark mode gradient (lighter)
+    "linear(to-r, #ff7e47, #fb6d6f)", 
+    "linear(to-r, #ff9e7a, #fc8c8e)" 
   );
   const secondaryText = useColorModeValue("gray.600", "gray.400");
 
@@ -40,7 +40,7 @@ const Banner = () => {
           as="h6"
           fontWeight={500}
           lineHeight="1.2"
-          fontSize={["32px", "40px", "50px", "60px"]}
+          fontSize={["32px", "40px", "50px", "50px"]}
           color={textColor}
           textAlign="center"
         >
@@ -52,7 +52,7 @@ const Banner = () => {
             display="inline"
           >
             {introText}{" "}
-            <MotionText fontSize={["32px", "40px", "50px", "60px"]} fontWeight={500} bgGradient={gradientText} bgClip="text" display="inline">
+            <MotionText fontSize={["32px", "40px", "50px", "50px"]} fontWeight={500} bgGradient={gradientText} bgClip="text" display="inline">
               pop-ups!
             </MotionText>
           </MotionText>

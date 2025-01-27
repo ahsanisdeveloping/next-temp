@@ -7,7 +7,8 @@ import LandingMap from "../components/LandingMap";
 import LandingGallery from "../components/LandingGallery";
 import PricingTable from "../components/Pricing";
 import FAQSection from "../components/Faqs";
-import { Testimonials } from "../components/Testimonials";
+import Testimonials from "../components/Testimonials";
+import Pillars from "../components/Pillars";
 
 const LandingPage = () => {
   // 🌙 Dark Mode Support
@@ -19,6 +20,7 @@ const LandingPage = () => {
       <Banner />
       <LandingMap />
       <LandingGallery />
+      <Pillars/>
       <PricingTable />
       <FAQSection />
       <Testimonials/>

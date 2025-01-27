@@ -9,6 +9,38 @@ const theme = extendTheme({
       },
     },
   },
+  components: {
+    Button: {
+      baseStyle: {
+        _focus: { boxShadow: "none" },
+        _focusVisible: { boxShadow: "none" },
+      },
+    },
+    Link: {
+      baseStyle: {
+        _focus: { boxShadow: "none" },
+        _focusVisible: { boxShadow: "none" },
+      },
+    },
+    Tag: {
+      baseStyle: {
+        _focus: { boxShadow: "none" },
+        _focusVisible: { boxShadow: "none" },
+      },
+    },
+    AccordionButton: {
+      baseStyle: {
+        _focus: { boxShadow: "none" },
+        _focusVisible: { boxShadow: "none" },
+      },
+    },
+    AccordionItem: {
+      baseStyle: {
+        _focus: { boxShadow: "none" },
+        _focusVisible: { boxShadow: "none" },
+      },
+    },
+  },
 });
 export default function Home() {
   return (

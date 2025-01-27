@@ -28,7 +28,7 @@ const LandingGallery = () => {
       />
 
       {/* Gallery (Behind Everything) */}
-      <Box position="relative" zIndex={0}>
+      <Box position="relative" left="-50px" zIndex={0}>
         <Gallery />
       </Box>
 
@@ -44,7 +44,7 @@ const LandingGallery = () => {
       </Box>
 
       {/* Text Content (Above Gallery) */}
-      <Box position="absolute" zIndex={3} left={["10px", "2rem"]} top={["20px", "50px"]} width={["90%", "400px"]}>
+      <Box position="absolute" zIndex={3} left={["10px", "2rem"]} top={["20px", "50px"]} width={["90%", "400px"]} py={10}>
         <Text fontSize={["18px", "20px"]} fontWeight={500} color={textColor}>
           Popin is the real-time advertising platform for pop-up businesses. It empowers owners to create a flexible business profile, share their location effortlessly, and connect with customers instantly.
         </Text>
@@ -55,7 +55,7 @@ const LandingGallery = () => {
         <br />
         <Button
           bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
-          marginTop={7}
+          marginTop={2}
           textColor="white"
           px={6}
           py={3}

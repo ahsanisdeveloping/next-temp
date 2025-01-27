@@ -67,7 +67,7 @@ export default function Navbar() {
             </Link>
           ))}
           {/* Theme Toggle Button */}
-          <Button onClick={toggleColorMode} variant="ghost">
+          <Button onClick={toggleColorMode} variant="ghost"  >
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
           </Button>
         </HStack>
@@ -102,7 +102,7 @@ export default function Navbar() {
               </Link>
             ))}
             {/* Theme Toggle Button */}
-            <Button onClick={toggleColorMode} variant="ghost">
+            <Button onClick={toggleColorMode} variant="ghost"  >
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
             </Button>
           </Stack>

@@ -6,25 +6,15 @@ import React, { useEffect, useRef } from "react";
 const images = [
   "/landingpage/grid7.png",
   "/landingpage/grid9.png",
-  "/landingpage/grid10.png",
-  "/landingpage/grid1.png",
+  "/landingpage/gridcolor3.png",
+  "/landingpage/gridcolor1.png",
   "/landingpage/grid2.png",
-  "/landingpage/grid3.png",
+  "/landingpage/gridcolor2.png",
+  "/landingpage/gridcolor4.png",
   "/landingpage/grid4.png",
-  "/landingpage/grid1.png",
-  "/landingpage/grid2.png",
-  "/landingpage/grid8.png",
-  "/landingpage/grid6.png",
-  "/landingpage/grid7.png",
-  "/landingpage/grid9.png",
-  "/landingpage/grid10.png",
-  "/landingpage/grid1.png",
-  "/landingpage/grid2.png",
-  "/landingpage/grid11.png",
-  "/landingpage/grid12.png",
-  "/landingpage/grid4.png",
-  "/landingpage/grid5.png",
-  "/landingpage/grid6.png",
+  "/landingpage/gridcolor2.png",
+  "/landingpage/gridcolor4.png",
+  
 ];
 
 const Gallery = () => {
@@ -33,14 +23,14 @@ const Gallery = () => {
   // Responsive column count while ensuring max 3 rows
   const gridColumns = useBreakpointValue({
     base: 2, // 2 columns on small screens
-    sm: 3, // 3 columns on tablets
-    md: 4, // 4 columns on medium screens
-    lg: 6, // 6 columns on large screens
-    xl: 7, // 7 columns on extra-large screens
+    sm: 2, // 3 columns on tablets
+    md: 3, // 4 columns on medium screens
+    lg: 4, // 6 columns on large screens
+    xl: 5, // 7 columns on extra-large screens
   });
 
   // Ensure a maximum of 3 rows, calculating total items dynamically
-  const maxRows = 3;
+  const maxRows = 2;
   const maxItems = gridColumns ? gridColumns * maxRows : images.length; // Limits number of images
 
   const isMobile = useBreakpointValue({ base: true, md: false });
@@ -65,7 +55,7 @@ const Gallery = () => {
   }, [isMobile]);
 
   return (
-    <Box ref={containerRef} px={4} py={6} overflow="hidden">
+    <Box ref={containerRef} px={4}  overflow="hidden">
       <SimpleGrid
         columns={gridColumns}
         spacing={4}
@@ -80,7 +70,8 @@ const Gallery = () => {
               alt={`Image ${index + 1}`}
               borderRadius="md"
               width="100%" // Make images responsive
-              height="auto"
+              height={["300px","300px","230px","230px","230px"]}
+              // height="auto"
               objectFit="cover"
             />
           </Box>

@@ -1,121 +1,73 @@
-
-
 "use client";
 
-import { Box, useColorModeValue } from "@chakra-ui/react";
-import { TestimonialCard } from "./TestimonialCard";
-import { motion, useAnimation } from "framer-motion";
-import { useState } from "react";
+import { Box, Text, Avatar, VStack, HStack, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 
-// Dummy Testimonials Data
-const testimonials = [
+interface Testimonial {
+  quote: string;
+  name: string;
+  role: string;
+  avatar: string;
+}
+
+const testimonials: Testimonial[] = [
   {
-    author: "Alice Johnson",
-    quote: "Popin revolutionized how we reach customers on the go! The visibility boost is phenomenal.",
-    title: "Founder",
-    company: "Alice’s Popups",
+    quote:
+      "You made it so simple. My new site is so much faster and easier to work with than my old site. I just choose the page, make the change.",
+    name: "Devon Lane",
+    role: "Account Assistant",
+    avatar: "/avatars/avatar1.png",
   },
   {
-    author: "Michael Brown",
-    quote: "Easy to set up and instantly effective! A must-have for any pop-up business.",
-    title: "Marketing Director",
-    company: "Urban Eats",
+    quote:
+      "Rareblocks makes it super easy to see which kinds of tweets perform best for whatever metric I’m optimizing for.",
+    name: "Marvin McKinney",
+    role: "Project Manager",
+    avatar: "/avatars/avatar2.png",
   },
   {
-    author: "Samantha Green",
-    quote: "The real-time location feature is a game changer! Customers find us effortlessly.",
-    title: "Operations Manager",
-    company: "Foodie Spot",
+    quote:
+      "Simply the best. Better than all the rest. I’d recommend this product to beginners and advanced users.",
+    name: "Bessie Cooper",
+    role: "President of Sales",
+    avatar: "/avatars/avatar3.png",
   },
   {
-    author: "David Martinez",
-    quote: "Love the flexibility! I can schedule pop-ups anytime and attract the right audience.",
-    title: "Owner",
-    company: "Streetwear X",
-  },
-  {
-    author: "Emma Wilson",
-    quote: "Popin helped us gain exposure like never before! Traffic has doubled in the last month.",
-    title: "CEO",
-    company: "Eco Popups",
-  },
-  {
-    author: "James Anderson",
-    quote: "The analytics tools are spot on. Now we know exactly where our customers are!",
-    title: "Business Consultant",
-    company: "Retail Boost",
-  },
-  {
-    author: "Olivia Taylor",
-    quote: "Super user-friendly! I was able to get started in minutes and start attracting customers.",
-    title: "Pop-Up Artist",
-    company: "Olivia’s Art Hub",
-  },
-  {
-    author: "Daniel Lee",
-    quote: "Great support team and an intuitive platform. Highly recommended for pop-up businesses!",
-    title: "General Manager",
-    company: "Street Delights",
-  },
-  {
-    author: "Sophia Rodriguez",
-    quote: "A seamless way to connect with customers in real-time. Couldn’t ask for more!",
-    title: "Marketing Lead",
-    company: "Pop Culture Events",
-  },
-  {
-    author: "William Clark",
-    quote: "The ultimate tool for pop-up success. We’ve seen a 300% increase in engagement!",
-    title: "Event Coordinator",
-    company: "City Nights",
+    quote:
+      "I cannot believe that I have got a brand new landing page after getting Omega. It was super easy to edit and publish.",
+    name: "Guy Hawkins",
+    role: "Marketing Coordinator",
+    avatar: "/avatars/avatar4.png",
   },
 ];
 
-const MotionBox = motion(Box);
-
-export const Testimonials = () => {
-  const [isPaused, setIsPaused] = useState(false);
-  const controls = useAnimation();
-
-  // 🏃 Start animation loop
-  const startAnimation = () => {
-    controls.start({
-      x: ["0%", "-50%"],
-      transition: {
-        repeat: Infinity,
-        repeatType: "loop",
-        duration: 30,
-        ease: "linear",
-      },
-    });
-  };
-
-  // ⏸️ Pause animation when hovered
-  const pauseAnimation = async () => {
-    await controls.stop();
-  };
-
-  // 🎨 Dark Mode Styles
-  const bg = useColorModeValue("white", "gray.900");
-  const cardBg = useColorModeValue("white", "gray.800");
-
+export default function Testimonials() {
+  const bg = useColorModeValue("white", "gray.900"); // Light/Dark Mode Background
+  const cardBg = useColorModeValue("base.100", "gray.800"); // Light/Dark Mode Card Background
+  const quotebg = useColorModeValue("cream.900", "gray.700")
   return (
-    <Box overflow="hidden" py={12} bg={bg}>
-      <MotionBox
-        display="flex"
-        gap={6}
-        minW="300%" // Ensures smooth infinite scrolling
-        animate={controls}
-        onMouseEnter={pauseAnimation} // Stop movement
-        onMouseLeave={startAnimation} // Restart smoothly
-      >
-        {/* Duplicate testimonials to create an infinite scrolling effect */}
+    <Box py={12} px={6} bg={bg}>
+      {/* Title */}
+      <Text fontSize={["2xl", "3xl"]} fontWeight="bold" textAlign="center" mb={8} textColor="#ff7e47">
+        What Users say about Popin
+      </Text>
+
+      {/* Grid Layout for Testimonials */}
+      <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} maxW="1000px" mx="auto">
         {testimonials.map((testimonial, index) => (
-          <TestimonialCard key={index} data={testimonial} />
+          <VStack key={index} bg={cardBg} p={6} borderRadius="xl" align="start" spacing={4}  minHeight={200}>
+            <Text fontSize="md" fontStyle="italic" bg={quotebg} padding={3} borderRadius="xl">“{testimonial.quote}”</Text>
+            <HStack spacing={3} pt={5}>
+              <Avatar name={testimonial.name} src={testimonial.avatar} size="sm" />
+              <VStack align="start" spacing={0}>
+                <Text fontWeight="bold">{testimonial.name}</Text>
+                <Text fontSize="sm" color="gray.500">
+                  {testimonial.role}
+                </Text>
+              </VStack>
+            </HStack>
+          </VStack>
         ))}
-      </MotionBox>
+      </SimpleGrid>
     </Box>
   );
-};
-
-
+}
