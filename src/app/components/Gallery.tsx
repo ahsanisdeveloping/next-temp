@@ -4,16 +4,16 @@ import { Box, SimpleGrid, Image, useBreakpointValue } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 
 const images = [
-  "/landingpage/grid7.png",
-  "/landingpage/grid9.png",
-  "/landingpage/gridcolor3.png",
   "/landingpage/gridcolor1.png",
-  "/landingpage/grid2.png",
+  "/landingpage/griddark1.png",
   "/landingpage/gridcolor2.png",
+  "/landingpage/griddark2.png",
+  "/landingpage/gridcolor3.png",
+  "/landingpage/griddark3.png",
   "/landingpage/gridcolor4.png",
-  "/landingpage/grid4.png",
-  "/landingpage/gridcolor2.png",
-  "/landingpage/gridcolor4.png",
+  "/landingpage/griddark4.png",
+  "/landingpage/gridcolor5.png",
+  "/landingpage/griddark5.png",
   
 ];
 
@@ -70,7 +70,7 @@ const Gallery = () => {
               alt={`Image ${index + 1}`}
               borderRadius="md"
               width="100%" // Make images responsive
-              height={["300px","300px","230px","230px","230px"]}
+              height={["300px","300px","230px","230px","250px"]}
               // height="auto"
               objectFit="cover"
             />
