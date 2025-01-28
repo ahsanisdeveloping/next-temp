@@ -4,24 +4,24 @@ import { Box, SimpleGrid, Image, useBreakpointValue,useColorMode } from "@chakra
 import React, { useEffect, useRef } from "react";
 
 const lightImages = [
-  "/landingpage/grid1.png",
+  "/landingpage/gridlight.png",
   "/landingpage/grid1.png",
   "/landingpage/grid2.png",
   "/landingpage/grid3.png",
   "/landingpage/grid4.png",
-  "/landingpage/gridlight.png",
+  "/landingpage/grid5.png",
   "/landingpage/grid6.png",
   "/landingpage/grid7.png",
   "/landingpage/grid8.png",
   "/landingpage/grid9.png",
 ];
 const darkImages = [
-  "/landingpage/grid1.png",
+  "/landingpage/griddark.png",
   "/landingpage/grid1.png",
   "/landingpage/grid2.png",
   "/landingpage/grid3.png",
   "/landingpage/grid4.png",
-  "/landingpage/griddark.png",
+  "/landingpage/grid5.png",
   "/landingpage/grid6.png",
   "/landingpage/grid7.png",
   "/landingpage/grid8.png",

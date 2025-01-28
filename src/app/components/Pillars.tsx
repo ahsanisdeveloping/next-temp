@@ -23,8 +23,8 @@ const collections = [
       "From street food to gourmet creations, Popin is where foodies and creators unite. Share your culinary craft or discover something delicious and unexpected.",
   },
   {
-    title: "Fitness Collection",
-    image: "/landingpage/food.png",
+    title: "Arts and Crafts",
+    image: "/landingpage/arts.png",
     description:
       "Celebrate the art of making. From handmade jewelry and unique home decor to DIY workshops, Popin empowers crafters to share their passion and inspire others through creativity.",
   },
@@ -36,13 +36,13 @@ const collections = [
   },
   {
     title: "Entertainment",
-    image: "/landingpage/food.png",
+    image: "/landingpage/entertainment.png",
     description:
       "Turn your creativity into an event! From live music and art exhibits to cultural showcases, Popin makes entertainment accessible and engaging for everyone.",
   },
   {
     title: "Community & Business",
-    image: "/landingpage/entertainment.png",
+    image: "/landingpage/community.jpg",
     description:
       "Build connections that last. Whether it’s a local meetup, a networking event, or an educational workshop, Popin fosters opportunities to grow together.",
   },
@@ -57,14 +57,13 @@ const secondaryText = useColorModeValue("gray.600", "gray.400");
 
   return (
     <Box py={16} px={6} bg={bg} textAlign="center">
-      {/* Title */}
       <Heading
         as="h2"
         fontSize={["2xl", "3xl"]}
         fontWeight="bold"
         color={textColor}
       >
-        Some Heading
+        The Pillars of Popup’s Business Community
       </Heading>
       <Text
         color={secondaryText}
@@ -79,8 +78,11 @@ const secondaryText = useColorModeValue("gray.600", "gray.400");
         together in meaningful ways.
       </Text>
 
-      {/* Collection Grid */}
-      <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={6} mt={10}>
+      <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={6} mt={10} templateAreas={{
+    base: `"a" "b" "c" "d" "e"`, // Single column layout for small screens
+    md: `"a b c"
+         ". d ."`, // Bottom row centered horizontally
+  }}>
         {collections.map((item, index) => {
           const controls = useAnimation();
 
@@ -111,7 +113,6 @@ const secondaryText = useColorModeValue("gray.600", "gray.400");
                 />
               </MotionBox>
 
-              {/* Overlay */}
               <Box
                 position="absolute"
                 bottom="0"

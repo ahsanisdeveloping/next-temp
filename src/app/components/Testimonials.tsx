@@ -54,7 +54,7 @@ export default function Testimonials() {
       {/* Grid Layout for Testimonials */}
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} maxW="1000px" mx="auto">
         {testimonials.map((testimonial, index) => (
-          <VStack key={index} bg={cardBg} p={6} borderRadius="xl" align="start" spacing={4}  minHeight={200}>
+          <VStack key={index} bg={cardBg} p={6} borderRadius="xl" shadow="md" align="start" spacing={4}  minHeight={200}>
             <Text fontSize="md" fontStyle="italic" bg={quotebg} padding={3} borderRadius="xl">“{testimonial.quote}”</Text>
             <HStack spacing={3} pt={5}>
               <Avatar name={testimonial.name} src={testimonial.avatar} size="sm" />

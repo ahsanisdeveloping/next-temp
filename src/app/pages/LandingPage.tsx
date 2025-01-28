@@ -9,6 +9,7 @@ import PricingTable from "../components/Pricing";
 import FAQSection from "../components/Faqs";
 import Testimonials from "../components/Testimonials";
 import Pillars from "../components/Pillars";
+import HowItWorks from "../components/HowItWorks";
 
 const LandingPage = () => {
   // 🌙 Dark Mode Support
@@ -20,6 +21,7 @@ const LandingPage = () => {
       <Banner />
       <LandingMap />
       <LandingGallery />
+      <HowItWorks/>
       <Pillars/>
       <PricingTable />
       <FAQSection />
