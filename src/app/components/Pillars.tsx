@@ -10,7 +10,7 @@ import {
   VStack,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 
 // Motion Wrapper for Animations
 const MotionBox = motion(Box);
@@ -26,7 +26,7 @@ const collections = [
     title: "Fitness Collection",
     image: "/landingpage/food.png",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce luctus nulla at dignissim tempus.",
+      "Celebrate the art of making. From handmade jewelry and unique home decor to DIY workshops, Popin empowers crafters to share their passion and inspire others through creativity.",
   },
   {
     title: "Health & Fitness",
@@ -35,16 +35,16 @@ const collections = [
       "Host or find wellness events like yoga classes, fitness workshops, and mindfulness sessions that inspire healthy living.",
   },
   {
-    title: "Fitness Collection",
+    title: "Entertainment",
     image: "/landingpage/food.png",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce luctus nulla at dignissim tempus.",
+      "Turn your creativity into an event! From live music and art exhibits to cultural showcases, Popin makes entertainment accessible and engaging for everyone.",
   },
   {
-    title: "Entertainment",
+    title: "Community & Business",
     image: "/landingpage/entertainment.png",
     description:
-      "Turn your creativity into an event! From live music and art exhibits to cultural showcases, Popin makes entertainment accessible and engaging for everyone.",
+      "Build connections that last. Whether it’s a local meetup, a networking event, or an educational workshop, Popin fosters opportunities to grow together.",
   },
 ];
 
@@ -52,8 +52,8 @@ const CollectionSection = () => {
   // 🌙 Dark Mode Colors
   const bg = useColorModeValue("white", "gray.900");
   const textColor = useColorModeValue("#ff7e47", "#ff7e47");
-  const overlayBg =
-    "linear-gradient(to top, rgba(0, 0, 0, 0.91), rgba(0,0,0,0.2))";
+const secondaryText = useColorModeValue("gray.600", "gray.400");
+  const overlayBg = "/landingpage/darkverticalgradiant.png";
 
   return (
     <Box py={16} px={6} bg={bg} textAlign="center">
@@ -67,7 +67,7 @@ const CollectionSection = () => {
         Some Heading
       </Heading>
       <Text
-        color="gray.500"
+        color={secondaryText}
         fontSize={["sm", "md"]}
         mt={2}
         maxW="600px"
@@ -81,65 +81,68 @@ const CollectionSection = () => {
 
       {/* Collection Grid */}
       <SimpleGrid columns={{ base: 1, sm: 2, md: 5 }} spacing={6} mt={10}>
-        {collections.map((item, index) => (
-          <MotionBox
-            key={index}
-            overflow="hidden"
-            position="relative"
-            borderRadius="md"
-            boxShadow="lg"
-            height={["300px","300px","300px","300px","300px"]}
-            width={["280px","280px","280px","280px","280px"]}
-            // whileHover={{ scale: 1.05 }}
-            // transition={{ duration: 0.3 }}
-          >
-            {/* Background Image */}
-            <MotionBox
-              whileHover={{
-                scale: 1.2, // Zoom in
-                rotate: 5, // Rotate 5 degrees to the right
-              }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-            >
-              <Image
-                src={item.image}
-                alt={item.title}
-                objectFit="cover"
-            height={["300px","300px","300px","300px","300px"]}
-            width={["280px","280px","280px","280px","280px"]}
-                borderRadius="md"
-              />
-            </MotionBox>
+        {collections.map((item, index) => {
+          const controls = useAnimation();
 
-            {/* Overlay */}
-            <Box
-              position="absolute"
-              bottom="0"
-              left="0"
-              width="100%"
-              height="140px"
-              bg={overlayBg}
-              display="flex"
-              alignItems="end"
-              justifyContent="start"
-              p={4}
-              color="white"
-              borderBottomRadius="md"
+          return (
+            <MotionBox
+              key={index}
+              overflow="hidden"
+              position="relative"
+              borderRadius="md"
+              boxShadow="lg"
+              height={["300px", "300px", "300px", "300px", "300px"]}
+              width={["280px", "280px", "280px", "280px", "280px"]}
+              onHoverStart={() => controls.start({ scale: 1.2, rotate: 10 })}
+              onHoverEnd={() => controls.start({ scale: 1, rotate: 0 })}
             >
-              <VStack align="start" spacing={1}>
-                <Text fontWeight="bold" fontSize="sm">
-                  {item.title}
-                </Text>
-                <Text fontSize="xs" opacity={0.8} textAlign="left">
-                  {item.description}
-                </Text>
-                <Button variant="link" color="white" size="xs">
-                  Explore Now →
-                </Button>
-              </VStack>
-            </Box>
-          </MotionBox>
-        ))}
+             
+              <MotionBox
+                animate={controls}
+                transition={{ type: "ease" }}
+              >
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  objectFit="cover"
+                  height={["250px", "250px", "250px", "250px", "250px"]}
+                  width={["280px", "280px", "280px", "280px", "280px"]}
+                  borderRadius="md"
+                />
+              </MotionBox>
+
+              {/* Overlay */}
+              <Box
+                position="absolute"
+                bottom="0"
+                left="0"
+                width="100%"
+                height="400px"
+                backgroundImage={`url(${overlayBg})`}
+                backgroundSize="cover"
+                backgroundPosition="bottom"
+                display="flex"
+                alignItems="end"
+                justifyContent="start"
+                p={4}
+                color="white"
+                borderBottomRadius="md"
+              >
+                <VStack align="start" spacing={1}>
+                  <Text fontWeight="bold" fontSize="sm">
+                    {item.title}
+                  </Text>
+                  <Text fontSize="xs" opacity={0.8} textAlign="left">
+                    {item.description}
+                  </Text>
+                  <Button variant="link" color="white" size="xs">
+                    Explore Now →
+                  </Button>
+                </VStack>
+              </Box>
+            </MotionBox>
+          );
+        })}
       </SimpleGrid>
     </Box>
   );

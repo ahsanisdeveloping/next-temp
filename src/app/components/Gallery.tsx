@@ -1,25 +1,37 @@
 "use client";
 
-import { Box, SimpleGrid, Image, useBreakpointValue } from "@chakra-ui/react";
+import { Box, SimpleGrid, Image, useBreakpointValue,useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 
-const images = [
-  "/landingpage/gridcolor1.png",
-  "/landingpage/griddark1.png",
-  "/landingpage/gridcolor2.png",
-  "/landingpage/griddark2.png",
-  "/landingpage/gridcolor3.png",
-  "/landingpage/griddark3.png",
-  "/landingpage/gridcolor4.png",
-  "/landingpage/griddark4.png",
-  "/landingpage/gridcolor5.png",
-  "/landingpage/griddark5.png",
-  
+const lightImages = [
+  "/landingpage/grid1.png",
+  "/landingpage/grid1.png",
+  "/landingpage/grid2.png",
+  "/landingpage/grid3.png",
+  "/landingpage/grid4.png",
+  "/landingpage/gridlight.png",
+  "/landingpage/grid6.png",
+  "/landingpage/grid7.png",
+  "/landingpage/grid8.png",
+  "/landingpage/grid9.png",
+];
+const darkImages = [
+  "/landingpage/grid1.png",
+  "/landingpage/grid1.png",
+  "/landingpage/grid2.png",
+  "/landingpage/grid3.png",
+  "/landingpage/grid4.png",
+  "/landingpage/griddark.png",
+  "/landingpage/grid6.png",
+  "/landingpage/grid7.png",
+  "/landingpage/grid8.png",
+  "/landingpage/grid9.png",
 ];
 
 const Gallery = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-
+  const {colorMode } = useColorMode()
+  const images = colorMode == "dark"?darkImages:lightImages
   // Responsive column count while ensuring max 3 rows
   const gridColumns = useBreakpointValue({
     base: 2, // 2 columns on small screens

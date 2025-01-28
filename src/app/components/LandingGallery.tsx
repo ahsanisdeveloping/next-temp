@@ -118,7 +118,7 @@ const LandingGallery = () => {
             transform: "scale(0.98)",
           }}
         >
-          Browse Popins
+          Access Popin
         </Button>
       </Box>
     </Box>

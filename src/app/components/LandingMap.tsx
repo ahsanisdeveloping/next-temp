@@ -18,12 +18,11 @@ const LandingMap = () => {
         transition={{ duration: 1 }}
         width="100%"
         maxW="1200px"
-        bg="green"
         position="relative"
       >
         {/* Orange Glow Background */}
             
-            <Box  position="absolute" top="0px" zIndex={3} >
+            <Box  position="absolute" top="0px"  >
           <Image
             src="/landingpage/orangeglowmap.png"
             alt="Orange Glow"
