@@ -10,20 +10,26 @@ import FAQSection from "../components/Faqs";
 import Testimonials from "../components/Testimonials";
 import Pillars from "../components/Pillars";
 import HowItWorks from "../components/HowItWorks";
+import BusinessOnMap from "../components/BusinessOnMap";
+import { useRef } from "react";
 
 const LandingPage = () => {
+  const pricingRef = useRef(null);
   // 🌙 Dark Mode Support
   const bg = useColorModeValue("white", "gray.900");
 
   return (
     <Box bg={bg} transition="background 0.3s ease-in-out">
-      <Navbar />
+      <Navbar pricingRef={pricingRef}/>
       <Banner />
       <LandingMap />
       <LandingGallery />
       <HowItWorks/>
+      <BusinessOnMap/>
       <Pillars/>
-      <PricingTable />
+      <Box ref={pricingRef}>
+        <PricingTable />
+      </Box>
       <FAQSection />
       <Testimonials/>
     </Box>

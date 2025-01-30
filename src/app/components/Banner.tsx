@@ -34,7 +34,7 @@ const Banner = () => {
   const MotionText = motion(Text);
 
   return (
-    <Box bg={bg} minH="100vh" display="flex" alignItems="center" justifyContent="center" px={4}>
+    <Box bg={bg} minH="80vh" display="flex" alignItems="center" justifyContent="center" px={4}>
       <Box maxW="1200px" width="100%" textAlign="center" px={[4, 6, 8]} py={[10, 16, 20]}>
         <Heading
           as="h6"

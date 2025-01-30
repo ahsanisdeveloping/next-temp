@@ -49,122 +49,154 @@ const HowItWorks = () => {
       text: "Search for pop-ups and events near you, or let Popin suggest experiences that match your taste.",
     },
   ];
+  const everyonePoints = [
+    {
+      id: 1,
+      boldText: "Meet, Connect, and Enjoy in Real-Time: ",
+
+      text: "Whether you’re hosting a pop-up or discovering one, Popin makes connecting effortless and memorable.",
+    },
+    
+  ];
   const bg = useColorModeValue("white", "gray.900");
-  const boxBg = useColorModeValue("gray.100", "gray.800");
+  const boxBg = useColorModeValue("white", "gray.900");
   const textColor = useColorModeValue("#ff7e47", "#ff7e47");
   const secondaryText = useColorModeValue("gray.600", "gray.400");
   return (
-    <Box py={16} px={6} bg={bg} textAlign="center">
-      <Heading
-        as="h2"
-        fontSize={["2xl", "3xl"]}
-        fontWeight="bold"
-        color={textColor}
-      >
-        How It Works
-      </Heading>
-      <Text
-        color={secondaryText}
-        fontSize={["sm", "md"]}
-        mt={2}
-        maxW="600px"
-        mx="auto"
-      >
-        With lots of unique blocks, you can easily build a page without coding.
-        Build your next landing page
-      </Text>
+    <Box py={16} px={10} bg={bg} textAlign="center">
+    <Heading as="h2" fontSize={["2xl", "3xl"]} fontWeight="bold" color={textColor}>
+      How It Works
+    </Heading>
+    <Text color={secondaryText} fontSize={["md", "lg"]} mt={2} mx="auto">
+      With lots of unique blocks, you can easily build a page without coding. Build your next landing page.
+    </Text>
+  
+    {/* Main Wrapper */}
+    <Flex
+    mt={5}
+      w="100%"
+      maxW="1200px"
+      mx="auto"
+      direction="column"
+      borderRadius="lg"
+      // boxShadow="xl"
+      p={6}
+      bg={boxBg}
+    >
+      {/* Two Column Layout for Business & Consumers */}
       <Flex
-        w="90%"
-        h="80vh"
-        bg={boxBg}
-        direction="column"
-        borderRadius="lg"
-        boxShadow="xl"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-        p={6}
+        direction={{ base: "column", md: "row" }} // Stack on mobile, side-by-side on desktop
+        justifyContent="space-between"
+        alignItems="flex-start"
+        width="100%"
+        gap={6} // Add spacing between sections
       >
-        <Flex direction="row" justifyContent="space-between" width="100%">
-          <Box width="500px">
-            <Text as="h1">For Businesses</Text>
-            <Text as="p">
-              Get discovered and grow your customer base in just a few steps:
-            </Text>
-            {businessPoints.map((point) => {
-              return (
-                <Flex
-  alignItems="center"
-  gap={3}
-  justifyContent="space-between"
-  padding={3}
-  shadow="sm"
-  my="1"
-  transition="all 0.3s ease-in-out"
-  _hover={{
-    shadow: "lg",
-    boxShadow: "0px 0px 20px #ff7e47, 0px 0px 40px #fb6d6f", // Brand gradient glow
-  }}
-  rounded="xl"
->
-  <Text
-    bgColor="black"
-    color="white"
-    rounded="lg"
-    px={3}
-    py={2}
-    textAlign="center"
-    mx="auto"
-    my="auto"
-  >
-    {point.id}
-  </Text>
-  <Text as="p" textAlign="left">
-    <strong>{point.boldText}</strong>
-    {point.text}
-  </Text>
-</Flex>
-
-              );
-            })}
-          </Box>
-          <Box width="500px">
-            <Text as="h1">For Consumers</Text>
-            <Text as="p">
-              Discover exciting pop-ups and unique experiences effortlessly:
-            </Text>
-            {consumerPoints.map((point) => {
-              return (
-                <Flex
-                  alignItems="center"
-                  gap={3}
-                  justifyContent="space-between"
-                  padding={3}
-                >
-                  <Text
-                    bgColor="black"
-                    color="white"
-                    rounded="lg"
-                    px={3}
-                    py={2}
-                    textAlign="center"
-                    mx="auto"
-                    my="auto"
-                  >
-                    {point.id}
-                  </Text>
-                  <Text as="p" textAlign="left">
-                    <strong>{point.boldText}</strong>
-                    {point.text}
-                  </Text>
-                </Flex>
-              );
-            })}
-          </Box>
-        </Flex>
-        <Box>bottom row</Box>
+        {/* Business Column */}
+        <Box flex="1" minW="300px">
+          <Text as="h1" fontSize="20px" fontWeight="bold" textAlign="left" px={3}>
+            For Businesses
+          </Text>
+          <Text as="p" fontSize="18px" fontWeight={500} textAlign="left" color={secondaryText} px={3} py={3}>
+            Get discovered and grow your customer base in just a few steps:
+          </Text>
+          {businessPoints.map((point) => (
+            <Flex
+              key={point.id}
+              alignItems="center"
+              gap={3}
+              padding={3}
+              shadow="sm"
+              my="1"
+              transition="all 0.3s ease-in-out"
+              _hover={{
+                shadow: "lg",
+                boxShadow: "0px 0px 20px #ff7e47, 0px 0px 40px #fb6d6f", // Gradient Glow
+              }}
+              rounded="xl"
+            >
+              <Text bgColor={useColorModeValue("black", "gray.400")} color={useColorModeValue("white", "black")} rounded="lg" px={4} py={2} textAlign="center">
+                {point.id}
+              </Text>
+              <Text as="p" textAlign="left">
+                <strong>{point.boldText}</strong> {point.text}
+              </Text>
+            </Flex>
+          ))}
+        </Box>
+  
+        {/* Consumers Column */}
+        <Box flex="1" minW="300px">
+          <Text as="h1" fontSize="20px" fontWeight="bold" textAlign="left" px={3}>
+            For Consumers
+          </Text>
+          <Text as="p" fontSize="18px" fontWeight={500} textAlign="left" color={secondaryText} px={3} py={3}>
+            Discover exciting pop-ups and unique experiences effortlessly:
+          </Text>
+          {consumerPoints.map((point) => (
+            <Flex
+              key={point.id}
+              alignItems="center"
+              gap={3}
+              padding={3}
+              shadow="sm"
+              my="1"
+              transition="all 0.3s ease-in-out"
+              _hover={{
+                shadow: "lg",
+                boxShadow: "0px 0px 20px #ff7e47, 0px 0px 40px #fb6d6f", // Gradient Glow
+              }}
+              rounded="xl"
+            >
+              <Text bgColor={useColorModeValue("black", "gray.400")} color={useColorModeValue("white", "black")} rounded="lg" px={4} py={2} textAlign="center">
+                {point.id}
+              </Text>
+              <Text as="p" textAlign="left">
+                <strong>{point.boldText}</strong> {point.text}
+              </Text>
+            </Flex>
+          ))}
+        </Box>
       </Flex>
-    </Box>
+  
+      {/* Bottom Row Centered */}
+      <Box mt={6} display="flex" justifyContent="center" 
+              flexDirection="column"
+              alignItems="center" mx="auto"
+              maxWidth="700px">
+      <Text as="h1" fontSize="20px" fontWeight="bold" textAlign="left" px={3}>
+            For Everyone
+          </Text>
+          <Text as="p" fontSize="18px" fontWeight={500} textAlign="left" color={secondaryText} px={3} py={3}>
+            Discover exciting pop-ups and unique experiences effortlessly:
+          </Text>
+          {everyonePoints.map((point) => (
+            <Flex
+              key={point.id}
+              alignItems="center"
+              gap={3}
+              padding={3}
+              shadow="sm"
+              my="1"
+              transition="all 0.3s ease-in-out"
+              _hover={{
+                shadow: "lg",
+                boxShadow: "0px 0px 20px #ff7e47, 0px 0px 40px #fb6d6f", // Gradient Glow
+              }}
+              rounded="xl"
+              maxWidth={"600px"}
+            >
+              <Text bgColor={useColorModeValue("black", "gray.400")} color={useColorModeValue("white", "black")} rounded="lg" px={4} py={2} textAlign="center">
+                {point.id}
+              </Text>
+              <Text as="p" textAlign="left">
+                <strong>{point.boldText}</strong> {point.text}
+              </Text>
+            </Flex>
+          ))}
+      </Box>
+    </Flex>
+  </Box>
+  
   );
 };
 

@@ -17,7 +17,7 @@ import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 
 const Links = ["Home", "Pricing", "Blogs", "Contact"];
 
-export default function Navbar() {
+export default function Navbar({pricingRef}) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -26,7 +26,9 @@ export default function Navbar() {
   const textColor = useColorModeValue("gray.700", "gray.300");
   const hoverBg = useColorModeValue("gray.200", "gray.700");
   const gradientColor = "linear(to-r, #ff7e47, #fb6d6f)";
-
+  const scrollToPricing = () => {
+    pricingRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <Box bg={bg} px={6} py={4} boxShadow="md">
       <Flex h={16} alignItems="center" justifyContent="space-between">
@@ -61,7 +63,8 @@ export default function Navbar() {
                   transform: "scaleX(1)", // Expand gradient border on hover
                 },
               }}
-              href={`/${link.toLowerCase()}`}
+              // href={`/${link.toLowerCase()}`}
+              onClick={scrollToPricing}
             >
               {link}
             </Link>
