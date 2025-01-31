@@ -11,6 +11,7 @@ const LandingMap = () => {
 
   return (
     <Box bg={bg} py={16} display="flex" flexDirection="column" alignItems="center">
+      
       <MotionBox
         textAlign="center"
         initial={{ opacity: 0, x: -100 }}

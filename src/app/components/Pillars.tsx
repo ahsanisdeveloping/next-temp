@@ -52,8 +52,7 @@ const CollectionSection = () => {
   const bg = useColorModeValue("white", "gray.900");
   const textColor = useColorModeValue("#ff7e47", "#ff7e47");
   const secondaryText = useColorModeValue("gray.600", "gray.400");
-  const overlayBg = "/landingpage/darkverticalgradiant.png";
-
+  const overlayBg = useColorModeValue( "/landingpage/lightverticalgradiant.png",  "/landingpage/darkverticalgradiant.png");
   return (
     <Box py={16} px={6} bg={bg} textAlign="center">
       <Heading as="h2" fontSize={["2xl", "3xl"]} fontWeight="bold" color={textColor}>
@@ -83,13 +82,13 @@ const CollectionSection = () => {
 // ✅ **Reusable Motion Card Component (Preserves Your Animations)**
 const AnimatedCard = ({ item, overlayBg }: { item: any; overlayBg: string }) => {
   const controls = useAnimation();
+  const stackText = useColorModeValue("black","white")
 
   return (
     <MotionBox
       overflow="hidden"
       position="relative"
       borderRadius="md"
-      boxShadow="lg"
       height="300px"
       width="280px"
       onHoverStart={() => controls.start({ scale: 1.2, rotate: 10 })}
@@ -112,7 +111,7 @@ const AnimatedCard = ({ item, overlayBg }: { item: any; overlayBg: string }) => 
         bottom="0"
         left="0"
         width="100%"
-        height="350px"
+        height="400px"
         backgroundImage={`url(${overlayBg})`}
         backgroundSize="cover"
         backgroundPosition="bottom"
@@ -124,13 +123,13 @@ const AnimatedCard = ({ item, overlayBg }: { item: any; overlayBg: string }) => 
         borderBottomRadius="md"
       >
         <VStack align="start" spacing={1}>
-          <Text fontWeight="bold" fontSize="sm">
+          <Text fontWeight="bold" fontSize="sm" color={stackText}>
             {item.title}
           </Text>
-          <Text fontSize="xs" opacity={0.8} textAlign="left">
+          <Text fontSize="xs" fontWeight={600} textAlign="left" color={stackText}>
             {item.description}
           </Text>
-          <Button variant="link" color="white" size="xs">
+          <Button variant="link" color="white" size="xs" color={stackText}>
             Explore Now →
           </Button>
         </VStack>

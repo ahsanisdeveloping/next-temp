@@ -8,6 +8,16 @@ const BusinessOnMap = () => {
 
   return (
     <Box py={16} px={6} bg={bg} textAlign="center">
+      <Box
+  width="100%"
+  height="400px"
+  backgroundImage={`url("/landingpage/orangepallete.svg")`}
+  backgroundSize="contain"
+  backgroundPosition="center"
+  backgroundRepeat="no-repeat"
+>
+  {/* Your content here */}
+</Box>
       <Heading
         as="h2"
         fontSize={["2xl", "3xl"]}
@@ -19,13 +29,13 @@ const BusinessOnMap = () => {
       </Heading>
       <Box display="flex" justifyContent="space-between" flexWrap="wrap" >
   <Box flex="1" p={10} minW="300px" >
-    <Text color={mainColor} mt={2} maxW="600px" mx="auto" textAlign="left" fontWeight={700} fontSize="xl">
+    <Text color={mainColor} mt={2} maxW="600px"  textAlign="left" fontWeight={700} fontSize="xl">
       For Popup Owners & Event Organisers
     </Text>
-    <Text color={secondaryText} fontSize={["sm", "md"]} mt={2} maxW="600px" mx="auto" textAlign="left">
+    <Text color={secondaryText} fontSize={["sm", "md"]} mt={2} maxW="600px"  textAlign="left">
     Popin empowers your business to stand out and thrive in a competitive marketplace.
     </Text>
-    <UnorderedList textAlign="left" mt={2} display="flex" flexDirection="column" gap={5} pl={7}>
+    <UnorderedList textAlign="left" mt={2} display="flex" flexDirection="column" gap={5} pl={2}>
       <ListItem mt={2}><strong>Showcase Your Story: </strong>Build a rich, dynamic profile that highlights what makes your pop-up unique—your mission, story, and offerings.
       </ListItem>
       <ListItem ><strong>Get Discovered in Real Time: </strong>Pin your business on the map and let customers know where to find you and when.</ListItem>

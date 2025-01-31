@@ -105,7 +105,7 @@ const HowItWorks = () => {
               alignItems="center"
               gap={3}
               padding={3}
-              shadow="sm"
+              shadow="lg"
               my="1"
               transition="all 0.3s ease-in-out"
               _hover={{

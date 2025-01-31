@@ -10,13 +10,17 @@ import {
   ListItem,
   Link
 } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import Gallery from "./Gallery";
+
+// Framer Motion Wrapper
+const MotionBox = motion(Box);
 
 const LandingGallery = () => {
   // 🌙 Dark Mode Colors
-  const bg = useColorModeValue("white", "gray.900"); // Light / Dark Background
-  const textColor = useColorModeValue("black", "whiteAlpha.900"); // Text Color
-  const secondaryText = useColorModeValue("gray.600", "gray.400"); // Subtext color
+  const bg = useColorModeValue("white", "gray.900");
+  const textColor = useColorModeValue("black", "whiteAlpha.900");
+  const secondaryText = useColorModeValue("gray.600", "gray.400");
   const gradientText = useColorModeValue(
     "linear(to-r, #ff7e47, #fb6d6f)",
     "linear(to-r, #ff9e7a, #fc8c8e)"
@@ -24,10 +28,23 @@ const LandingGallery = () => {
   const topLeftImage = useColorModeValue(
     "/landingpage/topleftwhite.png",
     "/landingpage/topleftblack.png"
-  ); // Dynamic image change
+  );
 
   return (
-    <Box position="relative" overflow="hidden" width="100%" bg={bg} py={20}>
+    <MotionBox 
+      position="relative"
+      overflow="hidden"
+      width="100%"
+      bg={bg}
+      py={20}
+
+      // 🔥 Scroll Reveal Animation
+      initial={{ opacity: 0, y: -50 }}  // Start hidden & slightly above
+      whileInView={{ opacity: 1, y: 0 }}  // Reveal when in viewport
+      transition={{ duration: 3, ease: "easeOut" }}  // Smooth effect
+      viewport={{ once: true }}  // Runs only once when in view
+    >
+      
       {/* Background Gradient */}
       <Box position="absolute" height="100%" width="100%" zIndex={1} />
 
@@ -43,11 +60,20 @@ const LandingGallery = () => {
       />
 
       {/* Gallery (Behind Everything) */}
-      <Box position="relative" left="-50px" zIndex={0}>
+      <MotionBox position="relative" left="-50px" zIndex={0} initial={{ opacity: 0, y: -50 }}  // Start hidden & slightly above
+      whileInView={{ opacity: 1, y: 0 }}  // Reveal when in viewport
+      transition={{ duration: 3, ease: "easeOut" }}  // Smooth effect
+      viewport={{ once: true }} >
         <Gallery />
-      </Box>
+      </MotionBox>
 
-      {/* Overlay Image (Switches between `topleftwhite` and `topleftblack`) */}
+      {/* Overlay Image (Switches between topleftwhite and topleftblack) */}
+      <Box position="absolute" zIndex={2} top={0} left={0}>
+        <Image src={topLeftImage} alt="Top Left Overlay" />
+      </Box>
+      <Box position="absolute" zIndex={2} top={0} left={0}>
+        <Image src={topLeftImage} alt="Top Left Overlay" />
+      </Box>
       <Box position="absolute" zIndex={2} top={0} left={0}>
         <Image src={topLeftImage} alt="Top Left Overlay" />
       </Box>
@@ -84,19 +110,22 @@ const LandingGallery = () => {
           Popin is the go-to platform for discovering and sharing pop-ups and
           local experiences.
         </Text>
-        <UnorderedList  my={2}>
-          <ListItem><strong>For Pop-ups and Entrepreneurs:</strong> Easily <Link color="#ff7e47"
-      fontWeight="bold"
-      textDecoration="none"
-      _hover={{
-        textDecoration: "underline",
-      }}>create a dynamic profile</Link>, share your location, and connect with customers in real time.</ListItem>
-          <ListItem><strong>For Consumers:</strong> Effortlessly <Link color="#ff7e47"
-      fontWeight="bold"
-      textDecoration="none"
-      _hover={{
-        textDecoration: "underline",
-      }}>find the latest pop-ups</Link> and unique experiences nearby, tailored to your preferences and goals.
+        <UnorderedList my={2}>
+          <ListItem>
+            <strong>For Pop-ups and Entrepreneurs:</strong> Easily <Link color="#ff7e47"
+              fontWeight="bold"
+              textDecoration="none"
+              _hover={{
+                textDecoration: "underline",
+              }}>create a dynamic profile</Link>, share your location, and connect with customers in real time.
+          </ListItem>
+          <ListItem>
+            <strong>For Consumers:</strong> Effortlessly <Link color="#ff7e47"
+              fontWeight="bold"
+              textDecoration="none"
+              _hover={{
+                textDecoration: "underline",
+              }}>find the latest pop-ups</Link> and unique experiences nearby, tailored to your preferences and goals.
           </ListItem>
         </UnorderedList>
         <br />
@@ -121,8 +150,9 @@ const LandingGallery = () => {
           Access Popin
         </Button>
       </Box>
-    </Box>
+      
+    </MotionBox>
   );
 };
 
-export default LandingGallery;
+export default LandingGallery;
