@@ -5,6 +5,7 @@ import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Preloader from "../app/components/Preloader"; // Import Preloader Component
+const hasVisited = sessionStorage.getItem("hasVisited");
 
 const theme = extendTheme({
   config: {
@@ -21,7 +22,6 @@ export default function RootLayout({ children }: LayoutProps) {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    const hasVisited = sessionStorage.getItem("hasVisited");
     if (!hasVisited) {
       sessionStorage.setItem("hasVisited", "true"); // Ensure preloader only plays once per session
     } else {

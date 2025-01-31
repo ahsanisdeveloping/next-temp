@@ -39,9 +39,32 @@ export default function Navbar({pricingRef}) {
 
         {/* Desktop Navigation */}
         <HStack as="nav" spacing={6} display={{ base: "none", md: "flex" }}>
-          {Links.map((link) => (
+        <Link
+              position="relative"
+              fontSize="lg"
+              fontWeight={400}
+              color={textColor}
+              _hover={{ textDecoration: "none" }}
+              _after={{
+                content: '""',
+                position: "absolute",
+                left: 0,
+                bottom: "-3px",
+                width: "100%",
+                height: "2px",
+                bgGradient: gradientColor, // Gradient underline effect
+                transform: "scaleX(0)",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              _hover={{
+                _after: {
+                  transform: "scaleX(1)", // Expand gradient border on hover
+                },
+              }}
+            >
+              Home
+            </Link>
             <Link
-              key={link}
               position="relative"
               fontSize="lg"
               fontWeight={400}
@@ -66,9 +89,60 @@ export default function Navbar({pricingRef}) {
               // href={`/${link.toLowerCase()}`}
               onClick={scrollToPricing}
             >
-              {link}
+              Pricing
             </Link>
-          ))}
+            <Link
+              position="relative"
+              fontSize="lg"
+              fontWeight={400}
+              color={textColor}
+              _hover={{ textDecoration: "none" }}
+              _after={{
+                content: '""',
+                position: "absolute",
+                left: 0,
+                bottom: "-3px",
+                width: "100%",
+                height: "2px",
+                bgGradient: gradientColor, // Gradient underline effect
+                transform: "scaleX(0)",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              _hover={{
+                _after: {
+                  transform: "scaleX(1)", // Expand gradient border on hover
+                },
+              }}
+              href={`/foundersvision`}
+            >
+              Founder's Vision
+            </Link>
+            <Link
+              position="relative"
+              fontSize="lg"
+              fontWeight={400}
+              color={textColor}
+              _hover={{ textDecoration: "none" }}
+              _after={{
+                content: '""',
+                position: "absolute",
+                left: 0,
+                bottom: "-3px",
+                width: "100%",
+                height: "2px",
+                bgGradient: gradientColor, // Gradient underline effect
+                transform: "scaleX(0)",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              _hover={{
+                _after: {
+                  transform: "scaleX(1)", // Expand gradient border on hover
+                },
+              }}
+              // href={`/${link.toLowerCase()}`}
+            >
+              Contact
+            </Link>
           {/* Theme Toggle Button */}
           <Button onClick={toggleColorMode} variant="ghost"  >
             {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
