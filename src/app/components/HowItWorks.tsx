@@ -11,7 +11,7 @@ import {
 const HowItWorks = () => {
   const businessPoints = [
     {
-      id: 1,
+      id: 1,  
       boldText: "Create your profile: ",
 
       text: " Share your business story, offerings, and goals with a dynamic profile.",
