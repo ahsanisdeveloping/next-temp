@@ -14,6 +14,7 @@ import BusinessOnMap from "../components/BusinessOnMap";
 import { useRef } from "react";
 import FeatureTabs from "../components/TestHIW";
 import Business from "../components/TestBOM";
+import OldHIW from "../components/HIWOld";
 
 const LandingPage = () => {
   const pricingRef = useRef(null);
