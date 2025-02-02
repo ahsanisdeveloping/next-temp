@@ -13,6 +13,7 @@ import HowItWorks from "../components/HowItWorks";
 import BusinessOnMap from "../components/BusinessOnMap";
 import { useRef } from "react";
 import FeatureTabs from "../components/TestHIW";
+import Business from "../components/TestBOM";
 
 const LandingPage = () => {
   const pricingRef = useRef(null);
@@ -26,7 +27,8 @@ const LandingPage = () => {
       <LandingMap />
       <LandingGallery />
       <FeatureTabs/>
-      <HowItWorks/>
+      {/* <HowItWorks/> */}
+      <Business/>
       <BusinessOnMap/>
       <Pillars/>
       <Box ref={pricingRef}>

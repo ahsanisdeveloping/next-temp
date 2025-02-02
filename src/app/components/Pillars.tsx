@@ -18,7 +18,7 @@ const MotionBox = motion(Box);
 const collections = [
   {
     title: "Food & Drink",
-    image: "/landingpage/food.png",
+    image: "/landingpage/newfood.png",
     description:
       "From street food to gourmet creations, Popin is where foodies and creators unite. Share your culinary craft or discover something delicious and unexpected.",
   },
@@ -30,19 +30,19 @@ const collections = [
   },
   {
     title: "Health & Fitness",
-    image: "/landingpage/health.png",
+    image: "/landingpage/newhealth.png",
     description:
       "Host or find wellness events like yoga classes, fitness workshops, and mindfulness sessions that inspire healthy living.",
   },
   {
     title: "Entertainment",
-    image: "/landingpage/entertainment.png",
+    image: "/landingpage/newentertainment.png",
     description:
       "Turn your creativity into an event! From live music and art exhibits to cultural showcases, Popin makes entertainment accessible and engaging for everyone.",
   },
   {
     title: "Community & Business",
-    image: "/landingpage/community.jpg",
+    image: "/landingpage/newcommunity.png",
     description:
       "Build connections that last. Whether it’s a local meetup, a networking event, or an educational workshop, Popin fosters opportunities to grow together.",
   },
@@ -89,8 +89,8 @@ const AnimatedCard = ({ item, overlayBg }: { item: any; overlayBg: string }) => 
       overflow="hidden"
       position="relative"
       borderRadius="md"
-      height="300px"
-      width="280px"
+      height="400px"
+      width="380px"
       onHoverStart={() => controls.start({ scale: 1.2, rotate: 10 })}
       onHoverEnd={() => controls.start({ scale: 1, rotate: 0 })}
     >
@@ -99,8 +99,8 @@ const AnimatedCard = ({ item, overlayBg }: { item: any; overlayBg: string }) => 
           src={item.image}
           alt={item.title}
           objectFit="cover"
-          height="300px"
-          width="280px"
+          height="500px"
+          width="380px"
           borderRadius="md"
         />
       </MotionBox>
