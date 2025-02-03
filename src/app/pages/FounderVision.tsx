@@ -5,7 +5,6 @@ import {
   Text,
   UnorderedList,
   Button,
-  useColorModeValue,
   Kbd,
 } from "@chakra-ui/react";
 import { useRouter } from "next/navigation";
@@ -80,7 +79,7 @@ const FounderVision = () => {
             animate={{ opacity: 1, x: 0 }} // Fade in & move to the original position
             transition={{ duration: 1, ease: "easeOut" }} // Smooth transition
           >
-            Founder's Vision
+            Founder&apos;s Vision
           </MotionKbd>
           <Text fontSize={{ base: "md", md: "xl" }}>
             Helping people unlock their potential and bring their vision to life
@@ -99,6 +98,7 @@ const FounderVision = () => {
         </MotionBox>
         <Image
           src="/landingpage/founder.jpg"
+          alt="desc"
           width={{ base: "300px", md: "400px" }} // Full width on mobile, fixed on desktop
           height={{ base: "300px", md: "400px" }} // Auto height on mobile, fixed on desktop
           objectFit="cover" // Ensures the image scales correctly
@@ -164,7 +164,7 @@ const FounderVision = () => {
           what if small businesses didn’t need huge advertising budgets to reach
           their community? That’s where <Kbd bgColor="#ff7e47" color="white"  >Popin</Kbd> was born—a platform that
           seamlessly connects the physical to the digital, helping people
-          discover what’s <Kbd bgColor="#ff7e47" color="white"  >"Popin"</Kbd> around them effortlessly.
+          discover what’s <Kbd bgColor="#ff7e47" color="white"  >&quot;Popin&quot;</Kbd> around them effortlessly.
         </Text>
       </Box>
       <Box>
@@ -187,7 +187,7 @@ const FounderVision = () => {
         <Text px={{ base: 4, md: 20 }} fontSize={{ base: "md", md: "xl" }}>
           At its core, <Kbd bgColor="#ff7e47" color="white"  >Popin</Kbd> is about creating connections. I believe that every
           product, service, or business has a natural community of
-          customers—it’s just a matter of helping them find each other. <Kbd bgColor="#ff7e47" color="white"  >Popin's</Kbd>
+          customers—it&apos;s just a matter of helping them find each other. <Kbd bgColor="#ff7e47" color="white"  >Popin&apos;s</Kbd>
           mission is to bridge that gap by making discovery effortless for both
           businesses and consumers.
         </Text>

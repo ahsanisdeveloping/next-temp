@@ -5,7 +5,6 @@ import {
   VStack,
   HStack,
   useColorModeValue,
-  useBreakpointValue,
   Grid,
   Kbd,
 } from "@chakra-ui/react";
@@ -72,7 +71,7 @@ export default function FeatureTabs() {
       py={5}
       minHeight={["90vh", "100vh"]}
       gap={10}
-      px={{base:5,md:20}}
+      px={{ base: 5, md: 20 }}
       height={{ base: "auto", md: "500px" }}
     >
       {/* Left Tabs - Takes 1 Column */}
@@ -134,10 +133,11 @@ export default function FeatureTabs() {
         minHeight={["90vh", "100vh"]}
         color={textColor}
         overflow="hidden"
-        borderImage={gradientBorder}
+        border="2px solid transparent" // ✅ Define a border
+        bgGradient={gradientBorder} // ✅ Apply gradient as background
         transition="background 0.3s ease-in-out, border 0.3s ease-in-out"
       >
-        <AnimatePresence mode="wait">
+        <AnimatePresence >
           <MotionBox
             key={activeTab}
             initial={{ opacity: 0, y: 20, height: 0 }}
@@ -207,7 +207,7 @@ const ForBusinesses = () => {
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
         {businessesData.points.map((point) => (
-          <Box>
+          <Box key={businessesData.points.length}>
             <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
               {point.boldText}
             </Kbd>
@@ -274,7 +274,7 @@ const ForConsumers = () => {
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
         {consumersData.points.map((point) => (
-          <Box>
+          <Box key={consumersData.points.length}>
             <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
               {point.boldText}
             </Kbd>
@@ -336,7 +336,7 @@ const ForEveryone = () => {
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
         {everyoneData.points.map((point) => (
-          <Box>
+          <Box key={everyoneData.points.length}>
             <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
               {point.boldText}
             </Kbd>

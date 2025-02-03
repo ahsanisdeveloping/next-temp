@@ -2,7 +2,6 @@
 
 import {
   Box,
-  Flex,
   HStack,
   Link,
   IconButton,
@@ -14,10 +13,13 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
+import { MutableRefObject } from "react";
 
 const Links = ["Home", "Pricing", "Blogs", "Contact"];
-
-export default function Navbar({pricingRef}) {
+interface NavbarProps {
+  pricingRef: MutableRefObject<HTMLDivElement | null>; // Reference to a div
+}
+export default function Navbar({pricingRef}:NavbarProps) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
 
@@ -31,7 +33,7 @@ export default function Navbar({pricingRef}) {
   };
   return (
     <Box bg={bg} px={6} py={4} boxShadow="md">
-      <Flex h={16} alignItems="center" justifyContent="space-between">
+      <Box display="flex" h={16} alignItems="center" justifyContent="space-between">
         {/* Logo */}
         <Box width={["80px", "100px"]}>
           <Image src="/landingpage/popinlogoorange.png" alt="Popin Logo" width="100%" height="auto" />
@@ -44,7 +46,9 @@ export default function Navbar({pricingRef}) {
               fontSize="lg"
               fontWeight={400}
               color={textColor}
-              _hover={{ textDecoration: "none" }}
+              _hover={{ textDecoration: "none",_after: {
+                transform: "scaleX(1)", // Expand gradient border on hover
+              }, }}
               _after={{
                 content: '""',
                 position: "absolute",
@@ -55,11 +59,6 @@ export default function Navbar({pricingRef}) {
                 bgGradient: gradientColor, // Gradient underline effect
                 transform: "scaleX(0)",
                 transition: "transform 0.3s ease-in-out",
-              }}
-              _hover={{
-                _after: {
-                  transform: "scaleX(1)", // Expand gradient border on hover
-                },
               }}
             >
               Home
@@ -69,7 +68,9 @@ export default function Navbar({pricingRef}) {
               fontSize="lg"
               fontWeight={400}
               color={textColor}
-              _hover={{ textDecoration: "none" }}
+              _hover={{ textDecoration: "none",_after: {
+                transform: "scaleX(1)", // Expand gradient border on hover
+              }, }}
               _after={{
                 content: '""',
                 position: "absolute",
@@ -80,11 +81,6 @@ export default function Navbar({pricingRef}) {
                 bgGradient: gradientColor, // Gradient underline effect
                 transform: "scaleX(0)",
                 transition: "transform 0.3s ease-in-out",
-              }}
-              _hover={{
-                _after: {
-                  transform: "scaleX(1)", // Expand gradient border on hover
-                },
               }}
               // href={`/${link.toLowerCase()}`}
               onClick={scrollToPricing}
@@ -96,7 +92,9 @@ export default function Navbar({pricingRef}) {
               fontSize="lg"
               fontWeight={400}
               color={textColor}
-              _hover={{ textDecoration: "none" }}
+              _hover={{ textDecoration: "none",_after: {
+                transform: "scaleX(1)", // Expand gradient border on hover
+              }, }}
               _after={{
                 content: '""',
                 position: "absolute",
@@ -108,21 +106,18 @@ export default function Navbar({pricingRef}) {
                 transform: "scaleX(0)",
                 transition: "transform 0.3s ease-in-out",
               }}
-              _hover={{
-                _after: {
-                  transform: "scaleX(1)", // Expand gradient border on hover
-                },
-              }}
               href={`/foundersvision`}
             >
-              Founder's Vision
+              Founder&apos;s Vision
             </Link>
             <Link
               position="relative"
               fontSize="lg"
               fontWeight={400}
               color={textColor}
-              _hover={{ textDecoration: "none" }}
+              _hover={{ textDecoration: "none",_after: {
+                transform: "scaleX(1)", // Expand gradient border on hover
+              } }}
               _after={{
                 content: '""',
                 position: "absolute",
@@ -133,11 +128,6 @@ export default function Navbar({pricingRef}) {
                 bgGradient: gradientColor, // Gradient underline effect
                 transform: "scaleX(0)",
                 transition: "transform 0.3s ease-in-out",
-              }}
-              _hover={{
-                _after: {
-                  transform: "scaleX(1)", // Expand gradient border on hover
-                },
               }}
               // href={`/${link.toLowerCase()}`}
             >
@@ -157,7 +147,7 @@ export default function Navbar({pricingRef}) {
           display={{ md: "none" }}
           onClick={isOpen ? onClose : onOpen}
         />
-      </Flex>
+      </Box>
 
       {/* Mobile Navigation */}
       {isOpen && (

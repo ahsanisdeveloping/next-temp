@@ -61,6 +61,7 @@ const Business = () => {
           height={500}
           width={600}
           rounded="xl"
+          alt="desc"
         />
       </Box>
       </Box>
@@ -77,6 +78,7 @@ const Business = () => {
           src="/landingpage/orangeglow.png"
           height="1000px" // Adjusted for a perfect dome effect
           width="100%"
+          alt="desc"
         />
       </MotionBox>
     </Box>

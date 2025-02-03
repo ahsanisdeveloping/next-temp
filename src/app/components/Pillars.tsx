@@ -80,7 +80,12 @@ const CollectionSection = () => {
 };
 
 // ✅ **Reusable Motion Card Component (Preserves Your Animations)**
-const AnimatedCard = ({ item, overlayBg }: { item: any; overlayBg: string }) => {
+interface CollectionItem {
+  title: string;
+  image: string;
+  description: string;
+}
+const AnimatedCard = ({ item, overlayBg }: { item: CollectionItem; overlayBg: string }) => {
   const controls = useAnimation();
   const stackText = useColorModeValue("black","white")
 
@@ -129,7 +134,7 @@ const AnimatedCard = ({ item, overlayBg }: { item: any; overlayBg: string }) => 
           <Text fontSize="xs" fontWeight={600} textAlign="left" color={stackText}>
             {item.description}
           </Text>
-          <Button variant="link" color="white" size="xs" color={stackText}>
+          <Button variant="link" size="xs" color={stackText}>
             Explore Now →
           </Button>
         </VStack>

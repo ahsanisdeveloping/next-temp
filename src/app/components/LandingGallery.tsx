@@ -19,7 +19,6 @@ const MotionBox = motion(Box);
 const LandingGallery = () => {
   // 🌙 Dark Mode Colors
   const bg = useColorModeValue("white", "gray.900");
-  const textColor = useColorModeValue("black", "whiteAlpha.900");
   const secondaryText = useColorModeValue("gray.600", "gray.400");
   const gradientText = useColorModeValue(
     "linear(to-r, #ff7e47, #fb6d6f)",

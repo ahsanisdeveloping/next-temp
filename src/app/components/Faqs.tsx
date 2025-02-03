@@ -119,7 +119,6 @@ export default function FAQSection() {
 
   // 🌙 Dark Mode Colors
   const bg = useColorModeValue("white", "gray.900"); // Background
-  const textColor = useColorModeValue("black", "whiteAlpha.900"); // Text color
   const tabBorder = useColorModeValue("#ff7e47", "#ff7e47"); // Gradient border for tabs
   const dividerColor = useColorModeValue("#ff7e47", "gray.500"); // Divider color
   const accordionBg = useColorModeValue("white", "gray.800"); // Accordion background

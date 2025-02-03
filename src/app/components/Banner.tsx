@@ -3,7 +3,7 @@
 import { Box, Button, Heading, Text, useColorModeValue, Flex } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
-
+import { chakra } from "@chakra-ui/system";
 const Banner = () => {
   const ownerText = "Be found by customers seeking experiences and local";
   const customerText = "Discover unique experiences and uncover amazing";
@@ -31,7 +31,7 @@ const Banner = () => {
   );
   const secondaryText = useColorModeValue("gray.600", "gray.400");
 
-  const MotionText = motion(Text);
+  const MotionText = motion(chakra.text);
 
   return (
     <Box bg={bg} minH="80vh" display="flex" alignItems="center" justifyContent="center" px={4}>
