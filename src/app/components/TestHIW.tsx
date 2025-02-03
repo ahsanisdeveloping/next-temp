@@ -8,7 +8,7 @@ import {
   useBreakpointValue,
   Flex,
   Grid,
-  Kbd
+  Kbd,
 } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { BsShop } from "react-icons/bs";
@@ -72,12 +72,11 @@ export default function FeatureTabs() {
     <Grid
       templateColumns={{ base: "1fr", md: "1fr 2fr" }} // 1 column for mobile, 1:2 ratio for desktop
       width="full"
-      py={10}
+      py={5}
       minHeight={["90vh", "100vh"]}
       gap={10}
       px={20}
       height={{ base: "auto", md: "500px" }}
-      overflow="hidden"
     >
       {/* Left Tabs - Takes 1 Column */}
       <VStack
@@ -115,7 +114,10 @@ export default function FeatureTabs() {
               bg={activeTab === index ? borderColor : "transparent"}
               transition="all 0.3s"
             />
-            <tab.icon size={25} color={activeTab === index ? borderColor : borderColor} />
+            <tab.icon
+              size={25}
+              color={activeTab === index ? borderColor : borderColor}
+            />
             <Text
               fontSize="lg"
               fontWeight={activeTab === index ? "bold" : "normal"}
@@ -141,9 +143,9 @@ export default function FeatureTabs() {
         <AnimatePresence mode="wait">
           <MotionBox
             key={activeTab}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: 20, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: "auto" }} // Ensures smooth height expansion
+            exit={{ opacity: 0, y: -20, height: 0 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
           >
             {component}
@@ -184,45 +186,50 @@ const ForBusinesses = () => {
     ],
   };
   return (
-    <Box >
-      <Box  bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
-            textColor="white"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            p={2} shadow="lg" 
-            px={5}
-            rounded="xl">
-      <Text fontSize={["xl","3xl"]} fontWeight="bold" my={2} >
-        {businessesData.title}
-        
-      </Text>
-     
-        <BsShop size={30} />
+    <Box>
+      <Box
+        bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
+        textColor="white"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={2}
+        shadow="lg"
+        px={5}
+        rounded="xl"
+      >
+        <Text fontSize={["xl", "3xl"]} fontWeight="bold" my={2}>
+          {businessesData.title}
+        </Text>
 
-          
+        <BsShop size={30} />
       </Box>
-      
-      <Text fontSize={["xl","3xl"]} color="gray.600"  my={2}>
+
+      <Text fontSize={["xl", "3xl"]} color="gray.600" my={2}>
         {businessesData.description}
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
-      {businessesData.points.map((point) => (
-        <Box><Kbd fontSize="xl" bg="#ff7e47"
-        textColor="white" mx="auto">{point.boldText}</Kbd>
-        <Box mt={2} display="flex" gap={2} alignItems="center" justifyContent="start">
+        {businessesData.points.map((point) => (
           <Box>
-        <BiRightArrow color="#ff7e47" size={25}/>
-
+            <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
+              {point.boldText}
+            </Kbd>
+            <Box
+              mt={2}
+              display="flex"
+              gap={2}
+              alignItems="center"
+              justifyContent="start"
+            >
+              <Box>
+                <BiRightArrow color="#ff7e47" size={25} />
+              </Box>
+              <Text fontWeight={600} fontSize="xl">
+                {point.text}
+              </Text>
+            </Box>
           </Box>
-          <Text fontWeight={600} fontSize="xl">
-            
-            {point.text}
-          </Text>
-        </Box>
-        
-        </Box>
-      ))}
+        ))}
       </Box>
     </Box>
   );
@@ -230,7 +237,8 @@ const ForBusinesses = () => {
 const ForConsumers = () => {
   const consumersData = {
     title: "For Consumers",
-    description: "Discover exciting pop-ups and unique experiences effortlessly:",
+    description:
+      "Discover exciting pop-ups and unique experiences effortlessly:",
     points: [
       {
         id: 1,
@@ -243,55 +251,61 @@ const ForConsumers = () => {
         text: "Search for pop-ups and events near you, or let Popin suggest experiences that match your taste.",
       },
     ],
-  }
+  };
   return (
-    <Box >
-      <Box  bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
-            textColor="white"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            p={2} shadow="lg" 
-            px={5}
-            rounded="xl">
-      <Text fontSize={["xl","3xl"]} fontWeight="bold" my={2} >
-        {consumersData.title}
-        
-      </Text>
-     
-        <IoIosPeople size={30} />
+    <Box>
+      <Box
+        bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
+        textColor="white"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={2}
+        shadow="lg"
+        px={5}
+        rounded="xl"
+      >
+        <Text fontSize={["xl", "3xl"]} fontWeight="bold" my={2}>
+          {consumersData.title}
+        </Text>
 
-          
+        <IoIosPeople size={30} />
       </Box>
-      
-      <Text fontSize={["xl","3xl"]} color="gray.600"  my={2}>
+
+      <Text fontSize={["xl", "3xl"]} color="gray.600" my={2}>
         {consumersData.description}
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
-      {consumersData.points.map((point) => (
-        <Box><Kbd fontSize="xl" bg="#ff7e47"
-        textColor="white" mx="auto">{point.boldText}</Kbd>
-        <Box mt={2} display="flex" gap={2} alignItems="center" justifyContent="start">
+        {consumersData.points.map((point) => (
           <Box>
-        <BiRightArrow color="#ff7e47" size={25}/>
-
+            <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
+              {point.boldText}
+            </Kbd>
+            <Box
+              mt={2}
+              display="flex"
+              gap={2}
+              alignItems="center"
+              justifyContent="start"
+            >
+              <Box>
+                <BiRightArrow color="#ff7e47" size={25} />
+              </Box>
+              <Text fontWeight={600} fontSize="xl">
+                {point.text}
+              </Text>
+            </Box>
           </Box>
-          <Text fontWeight={600} fontSize="xl">
-            
-            {point.text}
-          </Text>
-        </Box>
-        
-        </Box>
-      ))}
+        ))}
       </Box>
     </Box>
   );
 };
 const ForEveryone = () => {
-  const everyoneData =  {
+  const everyoneData = {
     title: "For Everyone",
-    description: "Discover exciting pop-ups and unique experiences effortlessly:",
+    description:
+      "Discover exciting pop-ups and unique experiences effortlessly:",
     points: [
       {
         id: 1,
@@ -299,47 +313,52 @@ const ForEveryone = () => {
         text: "Whether you’re hosting a pop-up or discovering one, Popin makes connecting effortless and memorable.",
       },
     ],
-  }
+  };
   return (
-    <Box >
-      <Box  bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
-            textColor="white"
-            display="flex"
-            justifyContent="space-between"
-            alignItems="center"
-            p={2} shadow="lg" 
-            px={5}
-            rounded="xl">
-      <Text fontSize={["xl","3xl"]} fontWeight="bold" my={2} >
-        {everyoneData.title}
-        
-      </Text>
-     
-        <PiHandshake size={30} />
+    <Box>
+      <Box
+        bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
+        textColor="white"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={2}
+        shadow="lg"
+        px={5}
+        rounded="xl"
+      >
+        <Text fontSize={["xl", "3xl"]} fontWeight="bold" my={2}>
+          {everyoneData.title}
+        </Text>
 
-          
+        <PiHandshake size={30} />
       </Box>
-      
-      <Text fontSize={["xl","3xl"]} color="gray.600"  my={2}>
+
+      <Text fontSize={["xl", "3xl"]} color="gray.600" my={2}>
         {everyoneData.description}
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
-      {everyoneData.points.map((point) => (
-        <Box><Kbd fontSize="xl" bg="#ff7e47"
-        textColor="white" mx="auto">{point.boldText}</Kbd>
-        <Box mt={2} display="flex" gap={2} alignItems="center" justifyContent="start">
+        {everyoneData.points.map((point) => (
           <Box>
-        <BiRightArrow color="#ff7e47" size={25}/>
-
+            <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
+              {point.boldText}
+            </Kbd>
+            <Box
+              mt={2}
+              display="flex"
+              gap={2}
+              alignItems="center"
+              justifyContent="start"
+            >
+              <Box>
+                <BiRightArrow color="#ff7e47" size={25} />
+              </Box>
+              <Text fontWeight={600} fontSize={["lg", "xl"]}>
+                {point.text}
+              </Text>
+            </Box>
           </Box>
-          <Text fontWeight={600} fontSize={["lg","xl"]}>
-            
-            {point.text}
-          </Text>
-        </Box>
-        
-        </Box>
-      ))}
+        ))}
       </Box>
     </Box>
   );
