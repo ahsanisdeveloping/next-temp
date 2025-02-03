@@ -8,13 +8,10 @@ import LandingGallery from "../components/LandingGallery";
 import PricingTable from "../components/Pricing";
 import FAQSection from "../components/Faqs";
 import Testimonials from "../components/Testimonials";
-import Pillars from "../components/Pillars";
-import HowItWorks from "../components/HowItWorks";
-import BusinessOnMap from "../components/BusinessOnMap";
+import Pillars from "../components/Pillars"
 import { useRef } from "react";
-import FeatureTabs from "../components/TestHIW";
-import Business from "../components/TestBOM";
-import OldHIW from "../components/HIWOld";
+import FeatureTabs from "../components/HowItWorks";
+import Business from "../components/BusinessOnMap";
 
 const LandingPage = () => {
   const pricingRef = useRef(null);
@@ -30,7 +27,6 @@ const LandingPage = () => {
       <FeatureTabs/>
       {/* <HowItWorks/> */}
       <Business/>
-      <BusinessOnMap/>
       <Pillars/>
       <Box ref={pricingRef}>
         <PricingTable />

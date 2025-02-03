@@ -173,7 +173,7 @@ export default function Navbar({pricingRef}) {
                 py={2}
                 rounded="md"
                 _hover={{ bg: hoverBg }}
-                href={`/${link.toLowerCase()}`}
+                
               >
                 {link}
               </Link>

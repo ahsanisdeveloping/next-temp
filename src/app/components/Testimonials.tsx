@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Text, Avatar, VStack, HStack, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
+import { Box, Text,  VStack, HStack, SimpleGrid, useColorModeValue } from "@chakra-ui/react";
 
 interface Testimonial {
   quote: string;
@@ -57,7 +57,7 @@ export default function Testimonials() {
           <VStack key={index} bg={cardBg} p={6} borderRadius="xl" shadow="md" align="start" spacing={4}  minHeight={200}>
             <Text fontSize="md" fontStyle="italic" bg={quotebg} padding={3} borderRadius="xl">“{testimonial.quote}”</Text>
             <HStack spacing={3} pt={5}>
-              <Avatar name={testimonial.name} src={testimonial.avatar} size="sm" />
+              {/* <Avatar name={testimonial.name} src={testimonial.avatar} size="sm" /> */}
               <VStack align="start" spacing={0}>
                 <Text fontWeight="bold">{testimonial.name}</Text>
                 <Text fontSize="sm" color="gray.500">

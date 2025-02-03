@@ -147,7 +147,7 @@ export default function PricingTable() {
               <Button
                 mt="auto"
                 color={isSelected ? "black" : "white"}
-                backgroundImage={isSelected ? "white" : "linear-gradient(to right, #ff7e47, #fb6d6f)"}
+                backgroundImage={isSelected ? "" : "linear-gradient(to right, #ff7e47, #fb6d6f)"}
                 backgroundColor={isSelected ? "white" : "transparent"}
                 _hover={{ opacity: 0.9 }}
                 w="full"

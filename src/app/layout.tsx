@@ -1,11 +1,9 @@
 "use client";
 
-import { ChakraProvider, extendTheme, ColorModeScript } from "@chakra-ui/react";
-import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { ChakraProvider, extendTheme, ColorModeScript } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import Preloader from "../app/components/Preloader"; // Import Preloader Component
-const hasVisited = sessionStorage.getItem("hasVisited");
 
 const theme = extendTheme({
   config: {
@@ -15,17 +13,23 @@ const theme = extendTheme({
 });
 
 interface LayoutProps {
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export default function RootLayout({ children }: LayoutProps) {
   const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
-    if (!hasVisited) {
-      sessionStorage.setItem("hasVisited", "true"); // Ensure preloader only plays once per session
-    } else {
-      setShowContent(true);
+    if (typeof window !== "undefined") {
+      // Only run on client-side
+      const hasVisited = sessionStorage.getItem("hasVisited");
+
+      if (!hasVisited) {
+        sessionStorage.setItem("hasVisited", "true"); // Mark the session
+        setShowContent(false); // Show preloader
+      } else {
+        setShowContent(true); // Skip preloader if visited before
+      }
     }
   }, []);
 

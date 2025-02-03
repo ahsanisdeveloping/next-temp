@@ -3,9 +3,7 @@ import {
   Box,
   Image,
   Text,
-  Heading,
   UnorderedList,
-  ListItem,
   Button,
   useColorModeValue,
   Kbd,
@@ -16,13 +14,8 @@ import { motion } from "framer-motion";
 import { BiRightArrow } from "react-icons/bi";
 const MotionKbd = motion(Kbd);
 const MotionBox = motion(Box);
-const MotionText = motion(Text);
 
 const FounderVision = () => {
-  const gradientText = useColorModeValue(
-    "linear(to-r, #ff7e47, #fb6d6f)",
-    "linear(to-r, #ff9e7a, #fc8c8e)"
-  );
   const router = useRouter();
   return (
     <Box

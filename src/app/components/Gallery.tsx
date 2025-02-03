@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, SimpleGrid, Image, useBreakpointValue,useColorMode } from "@chakra-ui/react";
+import { Box, SimpleGrid, Image, useBreakpointValue, useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useRef } from "react";
 
 const lightImages = [
@@ -30,29 +30,37 @@ const darkImages = [
 
 const Gallery = () => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const {colorMode } = useColorMode()
-  const images = colorMode == "dark"?darkImages:lightImages
+  const { colorMode } = useColorMode();
+  const images = colorMode === "dark" ? darkImages : lightImages;
+
   // Responsive column count while ensuring max 3 rows
   const gridColumns = useBreakpointValue({
-    base: 2, // 2 columns on small screens
-    sm: 2, // 3 columns on tablets
-    md: 3, // 4 columns on medium screens
-    lg: 4, // 6 columns on large screens
-    xl: 5, // 7 columns on extra-large screens
+    base: 2,  // 2 columns on small screens
+    sm: 2,    // 2 columns on tablets
+    md: 3,    // 3 columns on medium screens
+    lg: 4,    // 4 columns on large screens
+    xl: 5,    // 5 columns on extra-large screens
+  });
+
+  // Adjust image heights for different screens
+  const imageHeight = useBreakpointValue({
+    base: "150px",  // Smaller height for mobile
+    sm: "200px",
+    md: "250px",    // Medium height for tablets
+    lg: "280px",    // Larger height for desktops
+    xl: "300px",    // Maximum height
   });
 
   // Ensure a maximum of 3 rows, calculating total items dynamically
   const maxRows = 2;
   const maxItems = gridColumns ? gridColumns * maxRows : images.length; // Limits number of images
 
-  const isMobile = useBreakpointValue({ base: true, md: false });
-
   useEffect(() => {
     const handleScroll = () => {
       if (containerRef.current) {
         const scrollOffset = window.scrollY * 0.05; // Smooth effect
 
-        if (isMobile) {
+        if (window.innerWidth < 768) {
           // Move grid up/down on scroll for mobile
           containerRef.current.style.transform = `translateY(${scrollOffset}px) scale(1.05)`;
         } else {
@@ -64,10 +72,10 @@ const Gallery = () => {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [isMobile]);
+  }, []);
 
   return (
-    <Box ref={containerRef} px={4}  overflow="hidden">
+    <Box ref={containerRef} px={{ base: 2, md: 4 }} overflow="hidden">
       <SimpleGrid
         columns={gridColumns}
         spacing={4}
@@ -82,8 +90,7 @@ const Gallery = () => {
               alt={`Image ${index + 1}`}
               borderRadius="md"
               width="100%" // Make images responsive
-              height={["300px","300px","230px","230px","250px"]}
-              // height="auto"
+              height={imageHeight}
               objectFit="cover"
             />
           </Box>

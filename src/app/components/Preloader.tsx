@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Box } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Preloader({ onComplete }: { onComplete: () => void }) {

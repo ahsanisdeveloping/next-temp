@@ -1,203 +1,362 @@
+import { useState, useEffect } from "react";
 import {
   Box,
   Text,
+  VStack,
+  HStack,
   useColorModeValue,
-  Heading,
+  useBreakpointValue,
   Grid,
-  Flex,
-  Image,
+  Kbd,
 } from "@chakra-ui/react";
+import { motion, AnimatePresence } from "framer-motion";
+import { BsShop } from "react-icons/bs";
+import { BiRightArrow } from "react-icons/bi";
+import { IoIosPeople } from "react-icons/io";
+import { PiHandshake } from "react-icons/pi";
+// Motion Wrapper
+const MotionBox = motion(Box);
 
-const HowItWorks = () => {
-  const businessPoints = [
-    {
-      id: 1,  
-      boldText: "Create your profile: ",
+const tabs = [
+  { id: 0, title: "For Businesses", icon: BsShop },
+  { id: 1, title: "For Consumers", icon: IoIosPeople },
+  { id: 2, title: "For Everyone", icon: PiHandshake },
+];
 
-      text: " Share your business story, offerings, and goals with a dynamic profile.",
-    },
-    {
-      id: 2,
-      boldText: "Get Approved: ",
+export default function FeatureTabs() {
+  const [activeTab, setActiveTab] = useState(0);
+  const [manualSwitch, setManualSwitch] = useState(false);
+  const [component, setComponent] = useState(<ForBusinesses />);
 
-      text: "Once we’ve verified your profile, you’re ready to showcase your pop-up!",
-    },
-    {
-      id: 3,
-      boldText: "Add Your Dates: ",
+  // Function to update component based on tab index
+  const updateComponent = (index: number) => {
+    switch (index) {
+      case 0:
+        setComponent(<ForBusinesses />);
+        break;
+      case 1:
+        setComponent(<ForConsumers />);
+        break;
+      case 2:
+        setComponent(<ForEveryone />);
+        break;
+      default:
+        setComponent(<ForBusinesses />);
+    }
+  };
 
-      text: " Let your audience know when they can find you by adding pop-up dates to your profile.",
-    },
-    {
-      id: 4,
-      boldText: "Update Your Location: ",
+  // Auto-switch every 5 seconds unless manually switched
+  useEffect(() => {
+    if (manualSwitch) return;
+    const interval = setInterval(() => {
+      setActiveTab((prev) => (prev + 1) % tabs.length);
+      updateComponent((activeTab + 1) % tabs.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [manualSwitch, activeTab]); // Depend on activeTab for smooth cycling
 
-      text: "On the day of your pop-up, pinpoint your exact location on the map so customers can find you effortlessly in real-time.",
-    },
-  ];
-  const consumerPoints = [
-    {
-      id: 1,
-      boldText: "Create a Free Profile: ",
-
-      text: " Let us know your preferences to help tailor the experience just for you.",
-    },
-    {
-      id: 2,
-      boldText: "Explore the Map: ",
-
-      text: "Search for pop-ups and events near you, or let Popin suggest experiences that match your taste.",
-    },
-  ];
-  const everyonePoints = [
-    {
-      id: 1,
-      boldText: "Meet, Connect, and Enjoy in Real-Time: ",
-
-      text: "Whether you’re hosting a pop-up or discovering one, Popin makes connecting effortless and memorable.",
-    },
-    
-  ];
-  const bg = useColorModeValue("white", "gray.900");
-  const boxBg = useColorModeValue("white", "gray.900");
-  const textColor = useColorModeValue("#ff7e47", "#ff7e47");
+  // 🌙 Dark Mode Colors
+  const textColor = useColorModeValue("black", "whiteAlpha.900");
   const secondaryText = useColorModeValue("gray.600", "gray.400");
+  const gradientBorder = useColorModeValue(
+    "linear(to-r, #ff7e47, #fb6d6f)", // Light Mode
+    "linear(to-r, #ff9e7a, #fc8c8e)" // Dark Mode
+  );
+  const borderColor = useColorModeValue("#ff7e47", "#fc8c8e");
+  // Responsive Layout Handling
+
   return (
-    <Box py={16} px={10} bg={bg} textAlign="center">
-    <Heading as="h2" fontSize={["2xl", "3xl"]} fontWeight="bold" color={textColor}>
-      How It Works
-    </Heading>
-    <Text color={secondaryText} fontSize={["md", "lg"]} mt={2} mx="auto">
-      With lots of unique blocks, you can easily build a page without coding. Build your next landing page.
-    </Text>
-  
-    {/* Main Wrapper */}
-    <Flex
-    mt={5}
-      w="100%"
-      maxW="1200px"
-      mx="auto"
-      direction="column"
-      borderRadius="lg"
-      // boxShadow="xl"
-      p={6}
-      bg={boxBg}
+    <Grid
+      templateColumns={{ base: "1fr", md: "1fr 2fr" }} // 1 column for mobile, 1:2 ratio for desktop
+      width="full"
+      py={5}
+      minHeight={["90vh", "100vh"]}
+      gap={10}
+      px={{base:5,md:20}}
+      height={{ base: "auto", md: "500px" }}
     >
-      {/* Two Column Layout for Business & Consumers */}
-      <Flex
-        direction={{ base: "column", md: "row" }} // Stack on mobile, side-by-side on desktop
-        justifyContent="space-between"
-        alignItems="flex-start"
+      {/* Left Tabs - Takes 1 Column */}
+      <VStack
+        align={{ base: "center", md: "start" }}
+        spacing={5}
         width="100%"
-        gap={6} // Add spacing between sections
+        textAlign={{ base: "center", md: "left" }}
       >
-        {/* Business Column */}
-        <Box flex="1" minW="300px">
-          <Text as="h1" fontSize="20px" fontWeight="bold" textAlign="left" px={3}>
-            For Businesses
-          </Text>
-          <Text as="p" fontSize="18px" fontWeight={500} textAlign="left" color={secondaryText} px={3} py={3}>
-            Get discovered and grow your customer base in just a few steps:
-          </Text>
-          {businessPoints.map((point) => (
-            <Flex
-              key={point.id}
-              alignItems="center"
-              gap={3}
-              padding={3}
-              shadow="lg"
-              my="1"
-              transition="all 0.3s ease-in-out"
-              _hover={{
-                shadow: "lg",
-                boxShadow: "0px 0px 20px #ff7e47, 0px 0px 40px #fb6d6f", // Gradient Glow
-              }}
-              rounded="xl"
+        <Text fontSize={["3xl", "5xl"]} fontWeight="bold" color="#ff7e47">
+          How it Works
+        </Text>
+        <Text fontSize={["md", "xl"]} color={secondaryText} maxW="350px">
+          With lots of unique blocks, you can easily build a page without
+          coding. Build your next landing page.
+        </Text>
+
+        {tabs.map((tab, index) => (
+          <HStack
+            key={tab.id}
+            width="full"
+            cursor="pointer"
+            onClick={() => {
+              setActiveTab(index);
+              setManualSwitch(true);
+              updateComponent(index);
+            }}
+            spacing={3}
+            transition="all 0.3s ease-in-out"
+            _hover={{ transform: "scale(1.05)" }}
+            align="center"
+          >
+            <Box
+              width="3px"
+              height="20px"
+              bg={activeTab === index ? borderColor : "transparent"}
+              transition="all 0.3s"
+            />
+            <tab.icon
+              size={25}
+              color={activeTab === index ? borderColor : borderColor}
+            />
+            <Text
+              fontSize="lg"
+              fontWeight={activeTab === index ? "bold" : "normal"}
+              color={activeTab === index ? borderColor : "gray.500"}
             >
-              <Text bgColor={useColorModeValue("black", "gray.400")} color={useColorModeValue("white", "black")} rounded="lg" px={4} py={2} textAlign="center">
-                {point.id}
-              </Text>
-              <Text as="p" textAlign="left">
-                <strong>{point.boldText}</strong> {point.text}
-              </Text>
-            </Flex>
-          ))}
-        </Box>
-  
-        {/* Consumers Column */}
-        <Box flex="1" minW="300px">
-          <Text as="h1" fontSize="20px" fontWeight="bold" textAlign="left" px={3}>
-            For Consumers
-          </Text>
-          <Text as="p" fontSize="18px" fontWeight={500} textAlign="left" color={secondaryText} px={3} py={3}>
-            Discover exciting pop-ups and unique experiences effortlessly:
-          </Text>
-          {consumerPoints.map((point) => (
-            <Flex
-              key={point.id}
-              alignItems="center"
-              gap={3}
-              padding={3}
-              shadow="sm"
-              my="1"
-              transition="all 0.3s ease-in-out"
-              _hover={{
-                shadow: "lg",
-                boxShadow: "0px 0px 20px #ff7e47, 0px 0px 40px #fb6d6f", // Gradient Glow
-              }}
-              rounded="xl"
-            >
-              <Text bgColor={useColorModeValue("black", "gray.400")} color={useColorModeValue("white", "black")} rounded="lg" px={4} py={2} textAlign="center">
-                {point.id}
-              </Text>
-              <Text as="p" textAlign="left">
-                <strong>{point.boldText}</strong> {point.text}
-              </Text>
-            </Flex>
-          ))}
-        </Box>
-      </Flex>
-  
-      {/* Bottom Row Centered */}
-      <Box mt={6} display="flex" justifyContent="center" 
-              flexDirection="column"
-              alignItems="center" mx="auto"
-              maxWidth="700px">
-      <Text as="h1" fontSize="20px" fontWeight="bold" textAlign="left" px={3}>
-            For Everyone
-          </Text>
-          <Text as="p" fontSize="18px" fontWeight={500} textAlign="left" color={secondaryText} px={3} py={3}>
-            Discover exciting pop-ups and unique experiences effortlessly:
-          </Text>
-          {everyonePoints.map((point) => (
-            <Flex
-              key={point.id}
-              alignItems="center"
-              gap={3}
-              padding={3}
-              shadow="sm"
-              my="1"
-              transition="all 0.3s ease-in-out"
-              _hover={{
-                shadow: "lg",
-                boxShadow: "0px 0px 20px #ff7e47, 0px 0px 40px #fb6d6f", // Gradient Glow
-              }}
-              rounded="xl"
-              maxWidth={"600px"}
-            >
-              <Text bgColor={useColorModeValue("black", "gray.400")} color={useColorModeValue("white", "black")} rounded="lg" px={4} py={2} textAlign="center">
-                {point.id}
-              </Text>
-              <Text as="p" textAlign="left">
-                <strong>{point.boldText}</strong> {point.text}
-              </Text>
-            </Flex>
-          ))}
+              {tab.title}
+            </Text>
+          </HStack>
+        ))}
+      </VStack>
+
+      {/* Right Content Area - Takes 2 Columns */}
+      <Box
+        width="100%"
+        p={{ base: 3, md: 6 }}
+        borderRadius="md"
+        minHeight={["90vh", "100vh"]}
+        color={textColor}
+        overflow="hidden"
+        borderImage={gradientBorder}
+        transition="background 0.3s ease-in-out, border 0.3s ease-in-out"
+      >
+        <AnimatePresence mode="wait">
+          <MotionBox
+            key={activeTab}
+            initial={{ opacity: 0, y: 20, height: 0 }}
+            animate={{ opacity: 1, y: 0, height: "auto" }} // Ensures smooth height expansion
+            exit={{ opacity: 0, y: -20, height: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+          >
+            {component}
+          </MotionBox>
+        </AnimatePresence>
       </Box>
-    </Flex>
-  </Box>
-  
+    </Grid>
+  );
+}
+
+// Individual Components
+const ForBusinesses = () => {
+  const businessesData = {
+    title: "For Businesses",
+    description:
+      "Get discovered and grow your customer base in just a few steps:",
+    points: [
+      {
+        id: 1,
+        boldText: "Create your profile",
+        text: " Share your business story, offerings, and goals with a dynamic profile.",
+      },
+      {
+        id: 2,
+        boldText: "Get Approved",
+        text: "Once we’ve verified your profile, you’re ready to showcase your pop-up!",
+      },
+      {
+        id: 3,
+        boldText: "Add Your Dates",
+        text: " Let your audience know when they can find you by adding pop-up dates to your profile.",
+      },
+      {
+        id: 4,
+        boldText: "Update Your Location",
+        text: "On the day of your pop-up, pinpoint your exact location on the map so customers can find you effortlessly in real-time.",
+      },
+    ],
+  };
+  return (
+    <Box>
+      <Box
+        bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
+        textColor="white"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={2}
+        shadow="lg"
+        px={5}
+        rounded="xl"
+      >
+        <Text fontSize={["xl", "3xl"]} fontWeight="bold" my={2}>
+          {businessesData.title}
+        </Text>
+
+        <BsShop size={30} />
+      </Box>
+
+      <Text fontSize={["xl", "3xl"]} color="gray.600" my={2}>
+        {businessesData.description}
+      </Text>
+      <Box display="flex" flexDirection="column" gap={5}>
+        {businessesData.points.map((point) => (
+          <Box>
+            <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
+              {point.boldText}
+            </Kbd>
+            <Box
+              mt={2}
+              display="flex"
+              gap={2}
+              alignItems="center"
+              justifyContent="start"
+            >
+              <Box>
+                <BiRightArrow color="#ff7e47" size={25} />
+              </Box>
+              <Text fontWeight={600} fontSize="xl">
+                {point.text}
+              </Text>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    </Box>
   );
 };
+const ForConsumers = () => {
+  const consumersData = {
+    title: "For Consumers",
+    description:
+      "Discover exciting pop-ups and unique experiences effortlessly:",
+    points: [
+      {
+        id: 1,
+        boldText: "Create a Free Profile: ",
+        text: " Let us know your preferences to help tailor the experience just for you.",
+      },
+      {
+        id: 2,
+        boldText: "Explore the Map: ",
+        text: "Search for pop-ups and events near you, or let Popin suggest experiences that match your taste.",
+      },
+    ],
+  };
+  return (
+    <Box>
+      <Box
+        bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
+        textColor="white"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={2}
+        shadow="lg"
+        px={5}
+        rounded="xl"
+      >
+        <Text fontSize={["xl", "3xl"]} fontWeight="bold" my={2}>
+          {consumersData.title}
+        </Text>
 
-export default HowItWorks;
+        <IoIosPeople size={30} />
+      </Box>
+
+      <Text fontSize={["xl", "3xl"]} color="gray.600" my={2}>
+        {consumersData.description}
+      </Text>
+      <Box display="flex" flexDirection="column" gap={5}>
+        {consumersData.points.map((point) => (
+          <Box>
+            <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
+              {point.boldText}
+            </Kbd>
+            <Box
+              mt={2}
+              display="flex"
+              gap={2}
+              alignItems="center"
+              justifyContent="start"
+            >
+              <Box>
+                <BiRightArrow color="#ff7e47" size={25} />
+              </Box>
+              <Text fontWeight={600} fontSize="xl">
+                {point.text}
+              </Text>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+  );
+};
+const ForEveryone = () => {
+  const everyoneData = {
+    title: "For Everyone",
+    description:
+      "Discover exciting pop-ups and unique experiences effortlessly:",
+    points: [
+      {
+        id: 1,
+        boldText: "Meet, Connect, and Enjoy in Real-Time: ",
+        text: "Whether you’re hosting a pop-up or discovering one, Popin makes connecting effortless and memorable.",
+      },
+    ],
+  };
+  return (
+    <Box>
+      <Box
+        bgGradient="linear(to-r, #ff7e47, #fb6d6f)"
+        textColor="white"
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        p={2}
+        shadow="lg"
+        px={5}
+        rounded="xl"
+      >
+        <Text fontSize={["xl", "3xl"]} fontWeight="bold" my={2}>
+          {everyoneData.title}
+        </Text>
+
+        <PiHandshake size={30} />
+      </Box>
+
+      <Text fontSize={["xl", "3xl"]} color="gray.600" my={2}>
+        {everyoneData.description}
+      </Text>
+      <Box display="flex" flexDirection="column" gap={5}>
+        {everyoneData.points.map((point) => (
+          <Box>
+            <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
+              {point.boldText}
+            </Kbd>
+            <Box
+              mt={2}
+              display="flex"
+              gap={2}
+              alignItems="center"
+              justifyContent="start"
+            >
+              <Box>
+                <BiRightArrow color="#ff7e47" size={25} />
+              </Box>
+              <Text fontWeight={600} fontSize={["lg", "xl"]}>
+                {point.text}
+              </Text>
+            </Box>
+          </Box>
+        ))}
+      </Box>
+    </Box>
+  );
+};
