@@ -133,8 +133,6 @@ export default function FeatureTabs() {
         minHeight={["90vh", "100vh"]}
         color={textColor}
         overflow="hidden"
-        border="2px solid transparent" // ✅ Define a border
-        bgGradient={gradientBorder} // ✅ Apply gradient as background
         transition="background 0.3s ease-in-out, border 0.3s ease-in-out"
       >
         <AnimatePresence >
@@ -207,8 +205,8 @@ const ForBusinesses = () => {
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
         {businessesData.points.map((point) => (
-          <Box key={businessesData.points.length}>
-            <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
+          <Box key={point.id}>
+            <Kbd fontSize={{base:"md",sm:"xl"}} bg="#ff7e47" textColor="white" mx="auto">
               {point.boldText}
             </Kbd>
             <Box
@@ -274,7 +272,7 @@ const ForConsumers = () => {
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
         {consumersData.points.map((point) => (
-          <Box key={consumersData.points.length}>
+          <Box key={point.id}>
             <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
               {point.boldText}
             </Kbd>
@@ -336,7 +334,7 @@ const ForEveryone = () => {
       </Text>
       <Box display="flex" flexDirection="column" gap={5}>
         {everyoneData.points.map((point) => (
-          <Box key={everyoneData.points.length}>
+          <Box key={point.id}>
             <Kbd fontSize="xl" bg="#ff7e47" textColor="white" mx="auto">
               {point.boldText}
             </Kbd>

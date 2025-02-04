@@ -34,13 +34,13 @@ const Banner = () => {
   const MotionText = motion(chakra.text);
 
   return (
-    <Box bg={bg} minH="80vh" display="flex" alignItems="center" justifyContent="center" px={4}>
+    <Box bg={bg} minH={{base:"60vh",sm:"80vh"}} display="flex" alignItems="center" justifyContent="center" px={4}>
       <Box maxW="1200px" width="100%" textAlign="center" px={[4, 6, 8]} py={[10, 16, 20]}>
         <Heading
           as="h6"
           fontWeight={500}
           lineHeight="1.2"
-          fontSize={["32px", "40px", "50px", "50px"]}
+          fontSize={["40px", "40px", "50px", "50px"]}
           color={textColor}
           textAlign="center"
         >
@@ -52,7 +52,7 @@ const Banner = () => {
             display="inline"
           >
             {introText}{" "}
-            <MotionText fontSize={["32px", "40px", "50px", "50px"]} fontWeight={500} bgGradient={gradientText} bgClip="text" display="inline">
+            <MotionText fontSize={["40px", "40px", "50px", "50px"]} fontWeight={500} bgGradient={gradientText} bgClip="text" display="inline">
               pop-ups!
             </MotionText>
           </MotionText>
@@ -62,7 +62,7 @@ const Banner = () => {
           fontSize={["16px", "18px", "20px", "23px"]}
           paddingTop={4}
           color={secondaryText}
-          mt={2}
+          mt={{base:5,md:2}}
           textAlign="center"
           maxW={["90%", "80%", "70%"]}
           mx="auto"

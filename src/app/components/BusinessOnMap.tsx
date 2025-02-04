@@ -9,7 +9,7 @@ const MotionBox = motion(Box);
 const Business = () => {
   return (
     <Box
-      minHeight={["90vh", "100vh"]}
+      minHeight={["80vh", "100vh"]}
       position="relative"
       // bgImage={"url(/landingpage/orangepallete.svg)"}
       bgRepeat="no-repeat"
@@ -17,7 +17,7 @@ const Business = () => {
       overflow="hidden"
       display="flex"
       flexDirection="column"
-      justifyContent="space-between"
+      justifyContent={{base:"",sm:"space-between"}}
     >
       <Text fontSize={["3xl","6xl"]} fontWeight={700} textAlign="center" >
         Put your business on the map; Literally

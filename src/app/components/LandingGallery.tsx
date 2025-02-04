@@ -67,19 +67,19 @@ const LandingGallery = () => {
       </MotionBox>
 
       {/* Overlay Image (Switches between topleftwhite and topleftblack) */}
-      <Box position="absolute" zIndex={2} top={0} left={0}>
+      <Box position="absolute" zIndex={2} top={0} left={0} display={{base:"none",sm:"block"}}>
         <Image src={topLeftImage} alt="Top Left Overlay" />
       </Box>
-      <Box position="absolute" zIndex={2} top={0} left={0}>
+      <Box position="absolute" zIndex={2} top={0} left={0} display={{base:"none",sm:"block"}}>
         <Image src={topLeftImage} alt="Top Left Overlay" />
       </Box>
-      <Box position="absolute" zIndex={2} top={0} left={0}>
+      <Box position="absolute" zIndex={2} top={0} left={0} display={{base:"none",sm:"block"}}>
         <Image src={topLeftImage} alt="Top Left Overlay" />
       </Box>
-      <Box position="absolute" zIndex={2} top={0} left={0}>
+      <Box position="absolute" zIndex={2} top={0} left={0} display={{base:"none",sm:"block"}}>
         <Image src={topLeftImage} alt="Top Left Overlay" />
       </Box>
-      <Box position="absolute" zIndex={2} top={0} left={0}>
+      <Box position="absolute" zIndex={2} top={0} left={0}display={{base:"none",sm:"block"}}>
         <Image src={topLeftImage} alt="Top Left Overlay" />
       </Box>
 
@@ -87,10 +87,12 @@ const LandingGallery = () => {
       <Box
         position="absolute"
         zIndex={3}
-        left={["10px", "2rem"]}
+        left={{base:"0px", sm:["10px", "2rem"]}}
         top={["20px", "50px"]}
         width={["90%", "400px"]}
         py={10}
+        px={{base:4,sm:""}}
+        bgColor={{base:"#fff",sm:"transparent"}}
       >
         <Text
           fontSize={["18px", "30px"]}

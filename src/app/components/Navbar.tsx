@@ -153,21 +153,98 @@ export default function Navbar({pricingRef}:NavbarProps) {
       {isOpen && (
         <Box pb={4} display={{ md: "none" }} bg={bg} borderRadius="md">
           <Stack as="nav" spacing={4}>
-            {Links.map((link) => (
-              <Link
-                key={link}
-                fontSize="lg"
-                fontWeight={400}
-                color={textColor}
-                px={4}
-                py={2}
-                rounded="md"
-                _hover={{ bg: hoverBg }}
-                
-              >
-                {link}
-              </Link>
-            ))}
+          <Link
+              position="relative"
+              fontSize="lg"
+              fontWeight={400}
+              color={textColor}
+              _hover={{ textDecoration: "none",_after: {
+                transform: "scaleX(1)", // Expand gradient border on hover
+              }, }}
+              _after={{
+                content: '""',
+                position: "absolute",
+                left: 0,
+                bottom: "-3px",
+                width: "100%",
+                height: "2px",
+                bgGradient: gradientColor, // Gradient underline effect
+                transform: "scaleX(0)",
+                transition: "transform 0.3s ease-in-out",
+              }}
+            >
+              Home
+            </Link>
+            <Link
+              position="relative"
+              fontSize="lg"
+              fontWeight={400}
+              color={textColor}
+              _hover={{ textDecoration: "none",_after: {
+                transform: "scaleX(1)", // Expand gradient border on hover
+              }, }}
+              _after={{
+                content: '""',
+                position: "absolute",
+                left: 0,
+                bottom: "-3px",
+                width: "100%",
+                height: "2px",
+                bgGradient: gradientColor, // Gradient underline effect
+                transform: "scaleX(0)",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              // href={`/${link.toLowerCase()}`}
+              onClick={scrollToPricing}
+            >
+              Pricing
+            </Link>
+            <Link
+              position="relative"
+              fontSize="lg"
+              fontWeight={400}
+              color={textColor}
+              _hover={{ textDecoration: "none",_after: {
+                transform: "scaleX(1)", // Expand gradient border on hover
+              }, }}
+              _after={{
+                content: '""',
+                position: "absolute",
+                left: 0,
+                bottom: "-3px",
+                width: "100%",
+                height: "2px",
+                bgGradient: gradientColor, // Gradient underline effect
+                transform: "scaleX(0)",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              href={`/foundersvision`}
+            >
+              Founder&apos;s Vision
+            </Link>
+            <Link
+              position="relative"
+              fontSize="lg"
+              fontWeight={400}
+              color={textColor}
+              _hover={{ textDecoration: "none",_after: {
+                transform: "scaleX(1)", // Expand gradient border on hover
+              } }}
+              _after={{
+                content: '""',
+                position: "absolute",
+                left: 0,
+                bottom: "-3px",
+                width: "100%",
+                height: "2px",
+                bgGradient: gradientColor, // Gradient underline effect
+                transform: "scaleX(0)",
+                transition: "transform 0.3s ease-in-out",
+              }}
+              // href={`/${link.toLowerCase()}`}
+            >
+              Contact
+            </Link>
             {/* Theme Toggle Button */}
             <Button onClick={toggleColorMode} variant="ghost"  >
               {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
