@@ -92,7 +92,7 @@ const LandingGallery = () => {
         width={["90%", "400px"]}
         py={10}
         px={{base:4,sm:""}}
-        bgColor={{base:"#fff",sm:"transparent"}}
+        bgColor={{base:bg,sm:"transparent"}}
       >
         <Text
           fontSize={["18px", "30px"]}
